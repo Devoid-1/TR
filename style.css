@@ -1,956 +1,943 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 /* ================= HEADER / NAVBAR ================= */
 
 header {
-    width: 100%;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 60px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    height: 70px;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: 70px;
 }
 
 header .logo img {
-    height: 65px;
-    width: auto;
-    object-fit: contain;
-    display: block;
+  height: 65px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 header nav a {
-    margin: 0 15px;
-    color: #222;
-    text-decoration: none;
-    font-weight: 500;
-    line-height: 1;
+  margin: 0 15px;
+  color: #222;
+  text-decoration: none;
+  font-weight: 500;
+  line-height: 1;
 }
 
 .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .nav-right i {
-    font-size: 22px;
-    cursor: pointer;
+  font-size: 22px;
+  cursor: pointer;
 }
 
 .nav-right i.fa-bars {
-    display: none; /* hanya muncul di tablet/mobile */
+  display: none; /* hanya muncul di tablet/mobile */
 }
 
 .host-btn {
-    background: #5f7cff;
-    color: #fff;
-    border: none;
-    padding: 10px 22px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background 0.3s;
+  background: #5f7cff;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
 }
 
 .host-btn:hover {
-    background: #4767e5;
+  background: #4767e5;
 }
 
 /* ================= HERO ================= */
 
 .hero {
-    height: 90vh;
-    background: url('/bghero.png') center/cover no-repeat;
-    position: relative;
-    margin-top: 70px;
+  height: 90vh;
+  background: url("/img/bghero.png") center/cover no-repeat;
+  position: relative;
+  margin-top: 70px;
 }
 
 .hero-overlay {
-    background: rgba(0,0,0,0.4);
-    position: absolute;
-    width: 100%;
-    height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 1;
-    color: #fff;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .hero-content h1 {
-    font-size: 40px;
-    font-weight: 700;
+  font-size: 40px;
+  font-weight: 700;
 }
 
 .hero-content p {
-    margin: 15px 0;
-    font-size: 16px;
+  margin: 15px 0;
+  font-size: 16px;
 }
 
 .search-box {
-    background: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 60%;
-    margin: 25px auto;
-    border-radius: 40px;
-    padding: 10px 15px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin: 25px auto;
+  border-radius: 40px;
+  padding: 10px 15px;
 }
 
 .search-box input {
-    border: none;
-    outline: none;
-    width: 90%;
-    font-size: 15px;
-    padding: 10px;
-    border-radius: 40px;
+  border: none;
+  outline: none;
+  width: 90%;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 40px;
 }
 
 .filter-btn {
-    border: none;
-    background: #2979ff;
-    color: #fff;
-    border-radius: 50%;
-    padding: 10px;
-    cursor: pointer;
+  border: none;
+  background: #2979ff;
+  color: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
 }
 
 /* ================= ABOUT ================= */
 
 .about {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 120px 80px;
-    gap: 80px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 120px 80px;
+  gap: 80px;
 }
 
 .about-image img {
-    width: 470px;
-    border-radius: 35px;
-    object-fit: cover;
-    display: block;
+  width: 470px;
+  border-radius: 35px;
+  object-fit: cover;
+  display: block;
 }
 
 .about-text {
-    max-width: 600px;
+  max-width: 600px;
 }
 
 .about-text h2 {
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 15px;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
 
 .about-text span {
-    color: #2979ff;
+  color: #2979ff;
 }
 
 .about-text p {
-    color: #333;
-    margin-top: 15px;
-    line-height: 1.9;
-    font-size: 16px;
+  color: #333;
+  margin-top: 15px;
+  line-height: 1.9;
+  font-size: 16px;
 }
 
 /* ================= STATS ================= */
 
 .stats {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 70px 0;
-    background: #fff;
-    gap: 60px;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 70px 0;
+  background: #fff;
+  gap: 60px;
+  flex-wrap: wrap;
 }
 
 .stat-item {
-    text-align: center;
-    margin: 10px 40px;
+  text-align: center;
+  margin: 10px 40px;
 }
 
 .stat-item img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 8px;
+  width: 100px;
+  height: auto;
+  margin-bottom: 8px;
 }
 
 .stat-item h3 {
-    margin-top: 10px;
-    font-size: 22px;
+  margin-top: 10px;
+  font-size: 22px;
 }
 
 .stat-item p {
-    color: #777;
+  color: #777;
 }
-
 
 /* ================= WHY CHOOSE ================= */
 
 .why {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    /* padding kanan & atas dihilangkan, biar gambar nempel atas & kanan */
-    padding: 0 0 0 60px;      /* top 0, right 0, bottom 0, left 60px */
-    color: #fff;
-    flex-wrap: wrap;
-    background: #001d5e url('bgwhy.png') center/cover no-repeat;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  /* padding kanan & atas dihilangkan, biar gambar nempel atas & kanan */
+  padding: 0 0 0 60px; /* top 0, right 0, bottom 0, left 60px */
+  color: #fff;
+  flex-wrap: wrap;
+  background: #001d5e url("/img/bgwhy.png") center/cover no-repeat;
 }
 
 /* KIRI */
 .why-left {
-    flex: 1.2;
-    min-width: 320px;
-    max-width: 700px;
-    padding: 60px 0 60px 0;   /* jarak atas & bawah khusus untuk konten kiri */
+  flex: 1.2;
+  min-width: 320px;
+  max-width: 700px;
+  padding: 60px 0 60px 0; /* jarak atas & bawah khusus untuk konten kiri */
 }
 
 .why-left h2 {
-    font-size: 32px;
-    margin-bottom: 40px;
+  font-size: 32px;
+  margin-bottom: 40px;
 }
 
 .why-left span {
-    color: #4aa8ff;
+  color: #4aa8ff;
 }
 
 /* grid 2 kolom x 2 baris */
 .why-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 260px));
-    column-gap: 80px;
-    row-gap: 60px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 260px));
+  column-gap: 80px;
+  row-gap: 60px;
 }
 
 .why-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .why-item img {
-    width: 64px;
-    margin-bottom: 16px;
+  width: 64px;
+  margin-bottom: 16px;
 }
 
 .why-item h4 {
-    font-size: 16px;
-    margin-bottom: 8px;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 .why-item p {
-    font-size: 14px;
-    line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 /* KANAN: foto gedung + overlay + logo bulat */
 .why-right {
-    flex: 1;
-    min-width: 320px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    min-height: 480px;
-    background: url('why.png') center/cover no-repeat;
-    overflow: hidden;
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 480px;
+  background: url("/img/why.png") center/cover no-repeat;
+  overflow: hidden;
 }
 
 /* overlay biru gelap di atas foto */
 .why-right::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 20, 80, 0.45);
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 20, 80, 0.45);
 }
 
 /* lingkaran putih berisi logo */
 .logo-circle {
-    position: relative;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
+  position: relative;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 }
 
 .logo-circle img {
-    max-width: 75%;
-    height: auto;
+  max-width: 75%;
+  height: auto;
 }
 
 /* ================= SERVICES ================= */
 
 .services {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 120px 60px 140px;
-    background: #ffffff;
-    gap: 40px; /* jarak tengah tetap rapat */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 60px 140px;
+  background: #ffffff;
+  gap: 40px; /* jarak tengah tetap rapat */
 }
 
 /* Kiri – diperbesar sedikit */
 .services-left {
-    flex: 0 0 440px;
+  flex: 0 0 440px;
 }
 
 .services-left h2 {
-    font-size: 60px;          /* lebih besar */
-    font-weight: 700;
-    margin-bottom: 16px;
+  font-size: 60px; /* lebih besar */
+  font-weight: 700;
+  margin-bottom: 16px;
 }
 
 .services-divider {
-    width: 170px;
-    height: 2px;
-    background: #111;
-    margin: 10px 0 30px;
+  width: 170px;
+  height: 2px;
+  background: #111;
+  margin: 10px 0 30px;
 }
 
 .services-left p {
-    max-width: 420px;
-    font-size: 20px;          /* teks deskripsi lebih besar */
-    line-height: 2;
-    color: #333;
+  max-width: 420px;
+  font-size: 20px; /* teks deskripsi lebih besar */
+  line-height: 2;
+  color: #333;
 }
 
 /* Kanan – card biru dibesarkan */
 .services-right {
-    flex: 0 0 540px;          /* lebar card lebih besar */
-    display: flex;
-    justify-content: center;
+  flex: 0 0 540px; /* lebar card lebih besar */
+  display: flex;
+  justify-content: center;
 }
 
 .services-card {
-    background: #001974;
-    color: #ffffff;
-    border-radius: 70px;      /* sudut lebih bulat */
-    padding: 64px 80px 150px;  /* padding diperbesar */
-    max-width: 540px;
-    width: 100%;
-    box-shadow: 0 22px 48px rgba(0,0,0,0.2);
+  background: #001974;
+  color: #ffffff;
+  border-radius: 70px; /* sudut lebih bulat */
+  padding: 64px 80px 150px; /* padding diperbesar */
+  max-width: 540px;
+  width: 100%;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.2);
 }
 
 /* icon lebih besar */
 .services-icon {
-    width: 95px;
-    margin-bottom: 36px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  width: 95px;
+  margin-bottom: 36px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* judul & teks card dibesarkan */
 .services-card h3 {
-    font-size: 40px;
-    margin-bottom: 26px;
+  font-size: 40px;
+  margin-bottom: 26px;
 }
 
 .services-card p {
-    font-size: 18px;
-    line-height: 2;
-    margin-bottom: 42px;
+  font-size: 18px;
+  line-height: 2;
+  margin-bottom: 42px;
 }
 
 /* tombol lebih besar & tebal */
 .services-btn {
-    width: 100%;
-    padding: 20px 24px;
-    border-radius: 999px;
-    border: none;
-    background: #e6e6e6;
-    color: #111;
-    font-weight: 700;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+  width: 100%;
+  padding: 20px 24px;
+  border-radius: 999px;
+  border: none;
+  background: #e6e6e6;
+  color: #111;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
 }
 
 .services-btn:hover {
-    background: #d8d8d8;
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  background: #d8d8d8;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
-
 
 /* ================= HOSTING ================= */
 
 .hosting {
-    padding: 80px 60px 100px;   /* jarak putih luar normal (tidak dibesarkan) */
-    background: #ffffff;
+  padding: 80px 60px 100px; /* jarak putih luar normal (tidak dibesarkan) */
+  background: #ffffff;
 }
 
 .hosting-inner {
-    position: relative;
-    border-radius: 40px;
-    overflow: hidden;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+  position: relative;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
 }
 
 /* gambar full, tidak ter-crop */
 .hosting-bg {
-    width: 100%;
-    height: auto;
-    display: block;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* overlay lembut di atas gambar */
 .hosting-inner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.85) 0%,
-        rgba(255, 255, 255, 0.6) 30%,
-        rgba(255, 255, 255, 0) 60%
-    );
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.6) 30%,
+    rgba(255, 255, 255, 0) 60%
+  );
 }
 
 /* konten teks & tombol di atas gambar */
 .hosting-content {
-    position: absolute;
-    top: 50%;
-    left: 8%;
-    transform: translateY(-50%);
-    max-width: 420px;
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  transform: translateY(-50%);
+  max-width: 420px;
 }
 
 .hosting-content h2 {
-    font-size: 46px;
-    line-height: 1.2;
-    font-weight: 700;
-    margin-bottom: 18px;
-    color: #111;
+  font-size: 46px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #111;
 }
 
 .hosting-content p {
-    font-size: 18px;
-    color: #444;
-    margin-bottom: 32px;
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 32px;
 }
 
 .hosting-btn {
-    display: inline-block;
-    padding: 16px 48px;
-    border-radius: 999px;
-    border: none;
-    background: #4f6bff;
-    color: #fff;
-    font-weight: 600;
-    font-size: 17px;
-    cursor: pointer;
-    box-shadow: 0 10px 22px rgba(79, 107, 255, 0.4);
-    transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+  display: inline-block;
+  padding: 16px 48px;
+  border-radius: 999px;
+  border: none;
+  background: #4f6bff;
+  color: #fff;
+  font-weight: 600;
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(79, 107, 255, 0.4);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
 }
 
 .hosting-btn:hover {
-    background: #3b57e5;
-    transform: translateY(-1px);
-    box-shadow: 0 14px 30px rgba(79, 107, 255, 0.45);
+  background: #3b57e5;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(79, 107, 255, 0.45);
 }
 
 /* ================= SMART RENTING TIPS ================= */
 
 .tips {
-    padding: 90px 60px 120px;
-    background: #ffffff;
+  padding: 60px 60px 90px;
+  background: #ffffff;
+  max-width: 1150px; /* lebar konten, biar nggak kepanjangan */
+  margin: 0 auto;
 }
 
 .tips-header {
-    margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .tips-header h2 {
-    font-size: 44px;
-    font-weight: 700;
-    line-height: 1.2;
-    color: #444;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #444;
 }
 
 .tips-divider {
-    width: 160px;
-    height: 3px;
-    background: #444;
-    margin-top: 14px;
+  width: 140px;
+  height: 3px;
+  background: #444;
+  margin-top: 10px;
 }
 
-/* grid cards */
+/* GRID – DESKTOP: 3 kolom */
 .tips-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 40px;
-    margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* ⬅️ 3 kartu menyamping */
+  column-gap: 32px;
+  row-gap: 32px;
+  margin-top: 30px;
 }
 
+/* tiap kartu */
 .tip-card {
-    background: #ffffff;
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
+/* gambar penuh kolom, tidak di-crop */
 .tip-card img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
+/* teks di bawah gambar */
 .tip-body {
-    padding: 20px 22px 26px;
+  padding-top: 14px;
 }
 
 .tip-body h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-    color: #333;
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: #333;
+  font-weight: 600;
 }
 
 .tip-body span {
-    font-size: 14px;
-    color: #999;
+  font-size: 13px;
+  color: #999;
 }
 
-/* tombol di bawah grid */
+/* tombol bawah */
 .tips-btn-wrap {
-    display: flex;
-    justify-content: center;
-    margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
 }
 
 .tips-btn {
-    padding: 14px 46px;
-    border-radius: 999px;
-    border: none;
-    background: #4f6bff;
-    color: #fff;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 10px 24px rgba(79, 107, 255, 0.4);
-    transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+  padding: 12px 36px;
+  border-radius: 999px;
+  border: none;
+  background: #4f6bff;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(79, 107, 255, 0.35);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
 }
 
 .tips-btn:hover {
-    background: #3c57e3;
-    transform: translateY(-1px);
-    box-shadow: 0 14px 30px rgba(79, 107, 255, 0.5);
+  background: #3c57e3;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(79, 107, 255, 0.45);
 }
-
-
 
 /* ================= RESPONSIVE ================= */
 
 /* Tablet ≤ 992px */
 @media (max-width: 992px) {
+  /* NAVBAR */
+  header {
+    padding: 10px 25px;
+  }
 
-    /* NAVBAR */
-    header {
-        padding: 10px 25px;
-    }
+  header nav {
+    display: none; /* hide menu desktop */
+  }
 
-    header nav {
-        display: none; /* hide menu desktop */
-    }
+  .nav-right i.fa-bars {
+    display: block; /* muncul icon burger */
+  }
 
-    .nav-right i.fa-bars {
-        display: block; /* muncul icon burger */
-    }
+  .nav-right i.fa-user-circle {
+    display: none;
+  }
 
-    .nav-right i.fa-user-circle {
-        display: none;
-    }
+  /* HERO */
+  .hero-content h1 {
+    font-size: 32px;
+  }
 
-    /* HERO */
-    .hero-content h1 {
-        font-size: 32px;
-    }
+  .hero-content p {
+    font-size: 14px;
+    width: 85%;
+    margin: 10px auto;
+  }
 
-    .hero-content p {
-        font-size: 14px;
-        width: 85%;
-        margin: 10px auto;
-    }
+  .search-box {
+    width: 80%;
+  }
 
-    .search-box {
-        width: 80%;
-    }
+  /* ABOUT */
+  .about {
+    flex-direction: column;
+    text-align: center;
+    padding: 80px 30px;
+    gap: 40px;
+  }
 
-    /* ABOUT */
-    .about {
-        flex-direction: column;
-        text-align: center;
-        padding: 80px 30px;
-        gap: 40px;
-    }
+  .about-image img {
+    width: 85%;
+    margin: 0 auto;
+  }
 
-    .about-image img {
-        width: 85%;
-        margin: 0 auto;
-    }
+  .about-text {
+    max-width: 100%;
+  }
 
-    .about-text {
-        max-width: 100%;
-    }
+  .about-text h2 {
+    font-size: 32px;
+  }
 
-    .about-text h2 {
-        font-size: 32px;
-    }
+  /* STATS */
+  .stats {
+    gap: 40px;
+    padding: 60px 30px;
+  }
 
-    /* STATS */
-    .stats {
-        gap: 40px;
-        padding: 60px 30px;
-    }
+  .stat-item {
+    margin: 10px 20px;
+  }
 
-    .stat-item {
-        margin: 10px 20px;
-    }
+  .stat-item img {
+    width: 70px;
+  }
 
-    .stat-item img {
-        width: 70px;
-    }
+  /* WHY */
+  .why {
+    flex-direction: column;
+    padding: 60px 30px;
+    text-align: left;
+  }
 
-    /* WHY */
-    .why {
-        flex-direction: column;
-        padding: 60px 30px;
-        text-align: left;
-    }
+  .why-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 40px;
+    row-gap: 40px;
+  }
 
-    .why-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        column-gap: 40px;
-        row-gap: 40px;
-    }
+  .why-right {
+    margin-top: 40px;
+    min-height: 380px;
+  }
 
-    .why-right {
-        margin-top: 40px;
-        min-height: 380px;
-    }
+  .logo-circle {
+    width: 220px;
+    height: 220px;
+  }
 
-    .logo-circle {
-        width: 220px;
-        height: 220px;
-    }
+  /* SERVICES – tablet */
+  .services {
+    flex-direction: column;
+    padding: 80px 40px 90px;
+    gap: 40px;
+  }
 
-     /* SERVICES – tablet */
-    .services {
-        flex-direction: column;
-        padding: 80px 40px 90px;
-        gap: 40px;
-    }
+  .services-left {
+    width: 100%;
+  }
 
-    .services-left {
-        width: 100%;
-    }
+  .services-right {
+    width: 100%;
+    justify-content: center;
+  }
 
-    .services-right {
-        width: 100%;
-        justify-content: center;
-    }
+  .services-card {
+    max-width: 500px;
+  }
 
-    .services-card {
-        max-width: 500px;
-    }
+  /* HOSTING – tablet */
+  .hosting {
+    padding: 70px 40px 90px;
+  }
 
+  .hosting-inner {
+    border-radius: 32px;
+  }
 
+  .hosting-content {
+    left: 7%;
+    max-width: 340px;
+  }
+
+  .hosting-content h2 {
+    font-size: 36px;
+  }
+
+  .hosting-content p {
+    font-size: 16px;
+  }
+
+  /* TIPS – tablet */
+  .tips {
+    padding: 70px 40px 90px;
+    max-width: 100%;
+  }
+
+  .tips-header h2 {
+    font-size: 36px;
+  }
+
+  .tips-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 30px;
+    row-gap: 40px;
+  }
 }
-
-        /* HOSTING – tablet */
-    .hosting {
-        padding: 70px 40px 90px;
-    }
-
-    .hosting-inner {
-        border-radius: 32px;
-    }
-
-    .hosting-content {
-        left: 7%;
-        max-width: 340px;
-    }
-
-    .hosting-content h2 {
-        font-size: 36px;
-    }
-
-    .hosting-content p {
-        font-size: 16px;
-    }
-
-        /* TIPS – tablet */
-    .tips {
-        padding: 70px 40px 90px;
-    }
-
-    .tips-header h2 {
-        font-size: 36px;
-    }
-
-    .tips-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 30px;
-    }
-
-    .tip-card img {
-        height: 230px;
-    }
-
 
 /* Mobile ≤ 600px */
 @media (max-width: 600px) {
+  /* NAVBAR */
+  header {
+    padding: 10px 15px;
+  }
 
-    /* NAVBAR */
-    header {
-        padding: 10px 15px;
-    }
+  header .logo img {
+    height: 45px;
+  }
 
-    header .logo img {
-        height: 45px;
-    }
+  .nav-right .host-btn {
+    display: none;
+  }
 
-    .nav-right .host-btn {
-        display: none;
-    }
+  /* HERO */
+  .hero {
+    height: 75vh;
+  }
 
-    /* HERO */
-    .hero {
-        height: 75vh;
-    }
+  .hero-content h1 {
+    font-size: 26px;
+  }
 
-    .hero-content h1 {
-        font-size: 26px;
-    }
+  .hero-content p {
+    font-size: 13px;
+    width: 90%;
+  }
 
-    .hero-content p {
-        font-size: 13px;
-        width: 90%;
-    }
+  .search-box {
+    width: 90%;
+  }
 
-    .search-box {
-        width: 90%;
-    }
+  .search-box input {
+    font-size: 14px;
+  }
 
-    .search-box input {
-        font-size: 14px;
-    }
+  /* ABOUT */
+  .about {
+    padding: 60px 20px;
+    gap: 30px;
+  }
 
-    /* ABOUT */
-    .about {
-        padding: 60px 20px;
-        gap: 30px;
-    }
+  .about-image img {
+    width: 100%;
+  }
 
-    .about-image img {
-        width: 100%;
-    }
+  .about-text h2 {
+    font-size: 26px;
+  }
 
-    .about-text h2 {
-        font-size: 26px;
-    }
+  .about-text p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
 
-    .about-text p {
-        font-size: 14px;
-        line-height: 1.7;
-    }
+  /* STATS */
+  .stats {
+    padding: 50px 20px;
+    gap: 25px;
+  }
 
-    /* STATS */
-    .stats {
-        padding: 50px 20px;
-        gap: 25px;
-    }
+  .stat-item {
+    margin: 0;
+  }
 
-    .stat-item {
-        margin: 0;
-    }
+  .stat-item img {
+    width: 55px;
+  }
 
-    .stat-item img {
-        width: 55px;
-    }
+  .stat-item h3 {
+    font-size: 18px;
+  }
 
-    .stat-item h3 {
-        font-size: 18px;
-    }
+  .stat-item p {
+    font-size: 13px;
+  }
 
-    .stat-item p {
-        font-size: 13px;
-    }
+  /* WHY */
+  .why {
+    padding: 50px 20px;
+  }
 
-    /* WHY */
-    .why {
-        padding: 50px 20px;
-    }
+  .why-grid {
+    grid-template-columns: 1fr; /* jadi 1 kolom di HP */
+    row-gap: 30px;
+  }
 
-    .why-grid {
-        grid-template-columns: 1fr; /* jadi 1 kolom di HP */
-        row-gap: 30px;
-    }
+  .why-left h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 
-    .why-left h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
+  .why-item img {
+    width: 52px;
+  }
 
-    .why-item img {
-        width: 52px;
-    }
+  .why-right {
+    min-height: 300px;
+  }
 
-    .why-right {
-        min-height: 300px;
-    }
+  .logo-circle {
+    width: 180px;
+    height: 180px;
+  }
 
-    .logo-circle {
-        width: 180px;
-        height: 180px;
-    }
+  /* SERVICES – mobile */
+  .services {
+    padding: 60px 20px 70px;
+    gap: 30px;
+  }
 
-     /* SERVICES – mobile */
-    .services {
-        padding: 60px 20px 70px;
-        gap: 30px;
-    }
+  .services-left h2 {
+    font-size: 32px;
+  }
 
-    .services-left h2 {
-        font-size: 32px;
-    }
+  .services-left p {
+    font-size: 15px;
+    max-width: 100%;
+  }
 
-    .services-left p {
-        font-size: 15px;
-        max-width: 100%;
-    }
+  .services-card {
+    padding: 32px 22px 34px;
+    border-radius: 38px;
+  }
 
-    .services-card {
-        padding: 32px 22px 34px;
-        border-radius: 38px;
-    }
+  .services-icon {
+    width: 70px;
+    margin-bottom: 24px;
+  }
 
-    .services-icon {
-        width: 70px;
-        margin-bottom: 24px;
-    }
+  .services-card h3 {
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
 
-    .services-card h3 {
-        font-size: 26px;
-        margin-bottom: 16px;
-    }
+  .services-card p {
+    font-size: 14px;
+    margin-bottom: 26px;
+  }
 
-    .services-card p {
-        font-size: 14px;
-        margin-bottom: 26px;
-    }
+  .services-btn {
+    font-size: 15px;
+    padding: 14px 18px;
+  }
 
-    .services-btn {
-        font-size: 15px;
-        padding: 14px 18px;
-    }
+  /* HOSTING – mobile */
+  .hosting {
+    padding: 50px 20px 70px;
+  }
 
-           /* HOSTING – mobile */
-    .hosting {
-        padding: 50px 20px 70px;
-    }
+  .hosting-inner {
+    border-radius: 24px;
+  }
 
-    .hosting-inner {
-        border-radius: 24px;
-    }
+  .hosting-inner::before {
+    background: rgba(255, 255, 255, 0.9); /* full overlay biar teks jelas */
+  }
 
-    .hosting-inner::before {
-        background: rgba(255, 255, 255, 0.9); /* full overlay biar teks jelas */
-    }
+  .hosting-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    max-width: 90%;
+  }
 
-    .hosting-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        max-width: 90%;
-    }
+  .hosting-content h2 {
+    font-size: 30px;
+  }
 
-    .hosting-content h2 {
-        font-size: 30px;
-    }
+  .hosting-content p {
+    font-size: 15px;
+    margin-bottom: 22px;
+  }
 
-    .hosting-content p {
-        font-size: 15px;
-        margin-bottom: 22px;
-    }
+  .hosting-btn {
+    width: 100%;
+    padding: 14px 0;
+    font-size: 16px;
+  }
 
-    .hosting-btn {
-        width: 100%;
-        padding: 14px 0;
-        font-size: 16px;
-    }
+  /* TIPS – mobile */
+  .tips {
+    padding: 60px 20px 80px;
+  }
 
-        /* TIPS – mobile */
-    .tips {
-        padding: 60px 20px 80px;
-    }
+  .tips-header {
+    margin-bottom: 30px;
+  }
 
-    .tips-header {
-        margin-bottom: 30px;
-    }
+  .tips-header h2 {
+    font-size: 30px;
+  }
 
-    .tips-header h2 {
-        font-size: 30px;
-    }
+  .tips-divider {
+    width: 120px;
+    height: 2px;
+  }
 
-    .tips-divider {
-        width: 120px;
-        height: 2px;
-    }
+  .tips-grid {
+    grid-template-columns: 1fr; /* 1 kolom di HP */
+    row-gap: 26px;
+  }
 
-    .tips-grid {
-        grid-template-columns: 1fr;   /* jadi 1 kolom */
-        gap: 26px;
-    }
+  .tip-body h3 {
+    font-size: 18px;
+  }
 
-    .tip-card img {
-        height: 210px;
-    }
+  .tip-body span {
+    font-size: 13px;
+  }
 
-    .tip-body h3 {
-        font-size: 17px;
-    }
+  .tips-btn-wrap {
+    margin-top: 40px;
+  }
 
-    .tip-body span {
-        font-size: 13px;
-    }
-
-    .tips-btn-wrap {
-        margin-top: 40px;
-    }
-
-    .tips-btn {
-        width: 100%;
-        font-size: 15px;
-        padding: 13px 0;
-    }
-
-
+  .tips-btn {
+    width: 100%;
+    font-size: 15px;
+    padding: 13px 0;
+  }
 }
