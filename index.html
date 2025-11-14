@@ -479,212 +479,221 @@
       </div>
     </section>
 
-    <!-- Top Rated Kosts Section -->
-    <section class="bg-white px-5 md:px-10 lg:px-16 py-16">
-      <div class="max-w-6xl mx-auto">
-        <!-- Heading -->
-        <div class="mb-10">
-          <h2
-            class="text-3xl md:text-4xl font-bold leading-tight text-[#484848]"
+ <!-- Top Rated Kosts Section -->
+<section class="bg-white px-5 md:px-10 lg:px-16 py-16">
+  <div class="max-w-7xl mx-auto">
+    <!-- Heading -->
+    <div class="mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tight text-[#484848]">
+        Top Rated<br />Kosts
+      </h2>
+      <div class="w-32 h-[3px] bg-[#484848] mt-4"></div>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Card 1 -->
+      <article
+        class="relative flex flex-col rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
+      >
+        <!-- Gambar + ikon -->
+        <div class="relative">
+          <img
+            src="/img/skyview.png"
+            alt="SkyView Kost Exclusive"
+            class="w-full h-56 md:h-60 object-cover"
+          />
+
+          <!-- Stars -->
+          <div class="absolute top-3 left-3 flex gap-1 text-gray-800">
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+          </div>
+
+          <!-- Heart -->
+          <button
+            class="absolute top-3 right-3 w-10 h-10 rounded-[14px] bg-white/95 flex items-center justify-center shadow-md"
           >
-            Top Rated<br />Kosts
-          </h2>
-          <div class="w-32 h-[3px] bg-[#484848] mt-4"></div>
+            <i class="text-4xl not-italic leading-none text-gray-700">♡</i>
+          </button>
+
+          <!-- Avatar (lebih besar & naik ke area foto) -->
+          <div
+            class="absolute bottom-4 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
+          >
+            <img
+              src="/img/host1.png"
+              alt="Host"
+              class="w-full h-full object-cover"
+            />
+          </div>
         </div>
 
-        <!-- Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- Card 1 -->
-          <article
-            class="relative rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
-          >
-            <div class="relative">
-              <img
-                src="/img/skyview.png"
-                alt="SkyView Kost Exclusive"
-                class="w-full h-64 object-cover"
-              />
-
-              <!-- Stars -->
-              <div class="absolute top-3 left-3 flex gap-1 text-gray-800">
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-              </div>
-
-              <!-- Heart -->
-              <button
-                class="absolute top-3 right-3 w-10 h-10 rounded-[14px] bg-white/95 flex items-center justify-center shadow-md"
-              >
-                <i class="far fa-heart text-xl text-gray-700"></i>
-              </button>
-            </div>
-
-            <!-- Bottom info -->
-            <div class="relative bg-[#6276ff] pt-10 pb-4 px-5 text-white">
-              <!-- Avatar -->
-              <div
-                class="absolute -top-8 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
-              >
-                <img
-                  src="/img/host1.png"
-                  alt="Host"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-
-              <h3 class="font-semibold text-[18px] leading-snug mb-1">
-                SkyView Kost Exclusive
-              </h3>
-              <p class="text-xs md:text-sm text-white/90">
-                <span class="mr-1">📍</span>Jl. Pandanaran No. 18, Semarang.
-              </p>
-            </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article
-            class="relative rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
-          >
-            <div class="relative">
-              <img
-                src="/img/cozy.png"
-                alt="SkyView Kost Exclusive"
-                class="w-full h-64 object-cover"
-              />
-
-              <!-- Stars -->
-              <div class="absolute top-3 left-3 flex gap-1 text-gray-800">
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-              </div>
-
-              <!-- Heart -->
-              <button
-                class="absolute top-3 right-3 w-10 h-10 rounded-[14px] bg-white/95 flex items-center justify-center shadow-md"
-              >
-                <i class="far fa-heart text-xl text-gray-700"></i>
-              </button>
-            </div>
-
-            <!-- Bottom info -->
-            <div class="relative bg-[#6276ff] pt-10 pb-4 px-5 text-white">
-              <!-- Avatar -->
-              <div
-                class="absolute -top-8 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
-              >
-                <img
-                  src="/img/host2.jpg"
-                  alt="Host"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-
-              <h3 class="font-semibold text-[18px] leading-snug mb-1">
-                SkyView Kost Exclusive
-              </h3>
-              <p class="text-xs md:text-sm text-white/90">
-                <span class="mr-1">📍</span>Jl. Pandanaran No. 18, Semarang.
-              </p>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article
-            class="relative rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
-          >
-            <div class="relative">
-              <img
-                src="/img/harmony.png"
-                alt="Harmony Kost Family"
-                class="w-full h-64 object-cover"
-              />
-              <div class="absolute top-3 left-3 flex gap-1 text-gray-800">
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-              </div>
-              <button
-                class="absolute top-3 right-3 w-10 h-10 rounded-[14px] bg-white/95 flex items-center justify-center shadow-md"
-              >
-                <i class="far fa-heart text-xl text-gray-700"></i>
-              </button>
-            </div>
-
-            <div class="relative bg-[#6276ff] pt-10 pb-4 px-5 text-white">
-              <div
-                class="absolute -top-8 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
-              >
-                <img
-                  src="/img/host3.png"
-                  alt="Host"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-
-              <h3 class="font-semibold text-[18px] leading-snug mb-1">
-                Harmony Kost Family
-              </h3>
-              <p class="text-xs md:text-sm text-white/90">
-                <span class="mr-1">📍</span>Jl. Anggrek Indah No. 7,
-                Banjar­sari, Surakarta.
-              </p>
-            </div>
-          </article>
-
-          <!-- Card 4 -->
-          <article
-            class="relative rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
-          >
-            <div class="relative">
-              <img
-                src="/img/smartstay.png"
-                alt="SmartStay Kost"
-                class="w-full h-64 object-cover"
-              />
-              <div class="absolute top-3 left-3 flex gap-1 text-gray-800">
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-                <i class="fas fa-star text-sm"></i>
-              </div>
-              <button
-                class="absolute top-3 right-3 w-10 h-10 rounded-[14px] bg-white/95 flex items-center justify-center shadow-md"
-              >
-                <i class="far fa-heart text-xl text-gray-700"></i>
-              </button>
-            </div>
-
-            <div class="relative bg-[#6276ff] pt-10 pb-4 px-5 text-white">
-              <div
-                class="absolute -top-8 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
-              >
-                <img
-                  src="/img/host4.png"
-                  alt="Host"
-                  class="w-full h-full object-cover"
-                />
-              </div>
-
-              <h3 class="font-semibold text-[18px] leading-snug mb-1">
-                SmartStay Kost
-              </h3>
-              <p class="text-xs md:text-sm text-white/90">
-                <span class="mr-1">📍</span>Jl. Dr. Soetomo No. 21, Purwokerto,
-                Banyumas.
-              </p>
-            </div>
-          </article>
+        <!-- Bagian biru (lebih tinggi, nempel di bawah card) -->
+        <div
+          class="bg-[#6E8CFB] h-[110px] px-5 pt-6 pb-4 text-white flex flex-col justify-end"
+        >
+          <h3 class="font-semibold text-[18px] leading-snug mb-1">
+            SmartStay Kost
+          </h3>
+          <p class="text-xs md:text-sm text-white/90">
+            <span class="mr-1">📍</span>Jl. Pandanaran No. 18, Semarang.
+          </p>
         </div>
-      </div>
-    </section>
+      </article>
+
+      <!-- Card 2 -->
+      <article
+        class="relative flex flex-col rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
+      >
+        <div class="relative">
+          <img
+            src="/img/smartstay.png"
+            alt="SmartStay Kost"
+            class="w-full h-56 md:h-60 object-cover"
+          />
+
+          <div class="absolute top-3 left-3 flex gap-1 text-gray-800">
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+          </div>
+
+          <button
+            class="absolute top-3 right-3 w-10 h-10 rounded-[14px] bg-white/95 flex items-center justify-center shadow-md"
+          >
+            <i class="text-4xl not-italic leading-none text-gray-700">♡</i>
+          </button>
+
+          <div
+            class="absolute bottom-4 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
+          >
+            <img
+              src="/img/host4.png"
+              alt="Host"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        <div
+          class="bg-[#6E8CFB] h-[110px] px-5 pt-6 pb-4 text-white flex flex-col justify-end"
+        >
+          <h3 class="font-semibold text-[18px] leading-snug mb-1">
+            SmartStay Kost
+          </h3>
+          <p class="text-xs md:text-sm text-white/90">
+            <span class="mr-1">📍</span>Jl. Dr. Soetomo No. 21, Purwokerto,
+            Banyumas.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article
+        class="relative flex flex-col rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
+      >
+        <div class="relative">
+          <img
+            src="/img/harmony.png"
+            alt="Harmony Kost Family"
+            class="w-full h-56 md:h-60 object-cover"
+          />
+
+          <div class="absolute top-3 left-3 flex gap-1 text-gray-800">
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+          </div>
+
+          <button
+            class="absolute top-3 right-3 w-10 h-10 rounded-[14px] bg-white/95 flex items-center justify-center shadow-md"
+          >
+            <i class="text-4xl not-italic leading-none text-gray-700">♡</i>
+          </button>
+
+          <div
+            class="absolute bottom-4 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
+          >
+            <img
+              src="/img/host3.png"
+              alt="Host"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        <div
+          class="bg-[#6E8CFB] h-[110px] px-5 pt-6 pb-4 text-white flex flex-col justify-end"
+        >
+          <h3 class="font-semibold text-[18px] leading-snug mb-1">
+            Harmony Kost Family
+          </h3>
+          <p class="text-xs md:text-sm text-white/90">
+            <span class="mr-1">📍</span>Jl. Anggrek Indah No. 7, Banjar­sari,
+            Surakarta.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article
+        class="relative flex flex-col rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
+      >
+        <div class="relative">
+          <img
+            src="/img/smartstay.png"
+            alt="SmartStay Kost"
+            class="w-full h-56 md:h-60 object-cover"
+          />
+
+          <div class="absolute top-3 left-3 flex gap-1 text-gray-800">
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+            <i class="text-2xl not-italic leading-none text-gray-700">★</i>
+          </div>
+
+          <button
+            class="absolute top-3 right-3 w-10 h-10 rounded-[14px] bg-white/95 flex items-center justify-center shadow-md"
+          >
+            <i class="text-4xl not-italic leading-none text-gray-700">♡</i>
+          </button>
+
+          <div
+            class="absolute bottom-4 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
+          >
+            <img
+              src="/img/host4.png"
+              alt="Host"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        <div
+          class="bg-[#6E8CFB] h-[110px] px-5 pt-6 pb-4  text-white flex flex-col justify-end"
+        >
+          <h3 class="font-semibold text-[18px] leading-snug mb-1">
+            SmartStay Kost
+          </h3>
+          <p class="text-xs md:text-sm text-white/90">
+            <span class="mr-1">📍</span>Jl. Dr. Soetomo No. 21, Purwokerto,
+            Banyumas.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
   </body>
 </html>
