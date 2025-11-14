@@ -1,3 +1,6 @@
+<?php
+require 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,12 +21,15 @@
         font-family: "Poppins", sans-serif;
       }
     </style>
-
+    
     <!-- Font Awesome -->
-    <script
-      src="https://kit.fontawesome.com/a076d05399.js"
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
       crossorigin="anonymous"
-    ></script>
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body class="bg-white text-gray-900">
     <!-- Navbar -->
@@ -33,7 +39,7 @@
       >
         <div class="flex items-center">
           <img
-            src="/img/logo1.jpg"
+            src="img/logo1.jpg"
             alt="ThreeKost Logo"
             class="h-12 md:h-16 w-auto object-contain"
           />
@@ -58,10 +64,19 @@
           </button>
           <!-- Burger hanya di mobile/tablet -->
           <i class="fas fa-bars text-2xl cursor-pointer md:hidden"></i>
-          <!-- Icon user hanya di desktop -->
-          <i
-            class="fas fa-user-circle text-2xl cursor-pointer hidden md:inline-block"
-          ></i>
+
+          <!-- Icon user (dinamis) hanya di desktop -->
+          <?php if (isset($_SESSION['user_id'])): ?>
+            <!-- Sudah login: ke profile -->
+            <a href="profile.php" class="hidden md:inline-block">
+              <i class="fas fa-user-circle text-2xl cursor-pointer"></i>
+            </a>
+          <?php else: ?>
+            <!-- Belum login: ke signup -->
+            <a href="signup.php" class="hidden md:inline-block">
+              <i class="fas fa-user-circle text-2xl cursor-pointer"></i>
+            </a>
+          <?php endif; ?>
         </div>
       </div>
     </header>
@@ -69,7 +84,7 @@
     <!-- Hero Section -->
     <section
       class="relative mt-[70px] h-[90vh] bg-center bg-cover"
-      style="background-image: url('/img/bghero.png')"
+      style="background-image: url('img/bghero.png')"
     >
       <div class="absolute inset-0 bg-black/40"></div>
 
@@ -107,7 +122,7 @@
     >
       <div class="flex justify-center md:justify-start">
         <img
-          src="/img/about.png"
+          src="img/about.png"
           alt="ThreeKost About"
           class="w-full max-w-[470px] rounded-[35px] object-cover"
         />
@@ -141,33 +156,33 @@
       class="flex flex-wrap items-center justify-center gap-10 md:gap-16 py-16 px-4 bg-white"
     >
       <div class="text-center mx-4">
-        <img src="/img/10years.png" alt="" class="w-24 mx-auto mb-2" />
+        <img src="img/10years.png" alt="" class="w-24 mx-auto mb-2" />
         <h3 class="mt-2 text-xl font-semibold">10+ Year</h3>
         <p class="text-sm text-gray-500">Experience</p>
       </div>
       <div class="text-center mx-4">
-        <img src="/img/follower.png" alt="" class="w-24 mx-auto mb-2" />
+        <img src="img/follower.png" alt="" class="w-24 mx-auto mb-2" />
         <h3 class="mt-2 text-xl font-semibold">10.000+</h3>
         <p class="text-sm text-gray-500">Follower</p>
       </div>
       <div class="text-center mx-4">
-        <img src="/img/landlord.png" alt="" class="w-24 mx-auto mb-2" />
+        <img src="img/landlord.png" alt="" class="w-24 mx-auto mb-2" />
         <h3 class="mt-2 text-xl font-semibold">70.000+</h3>
         <p class="text-sm text-gray-500">Landlord</p>
       </div>
       <div class="text-center mx-4">
-        <img src="/img/tenant.png" alt="" class="w-24 mx-auto mb-2" />
+        <img src="img/tenant.png" alt="" class="w-24 mx-auto mb-2" />
         <h3 class="mt-2 text-xl font-semibold">80.000+</h3>
         <p class="text-sm text-gray-500">Tenant</p>
       </div>
     </section>
 
-    <!-- Why Choose Section (TAILWIND, layout sama seperti CSS lama) -->
+    <!-- Why Choose Section -->
     <section class="flex flex-col md:flex-row min-h-[520px]">
-      <!-- KIRI: background biru + pattern + teks -->
+      <!-- KIRI -->
       <div
         class="flex-1 px-8 sm:px-12 lg:px-16 py-12 sm:py-16 lg:py-20 text-white"
-        style="background: #001d5e url('/img/bgwhy.png') center/cover no-repeat"
+        style="background: #001d5e url('img/bgwhy.png') center/cover no-repeat"
       >
         <h2
           class="text-3xl sm:text-[36px] lg:text-[40px] font-bold leading-tight"
@@ -175,14 +190,12 @@
           Why Choose <span class="text-[#4aa8ff]">ThreeKost ?</span>
         </h2>
 
-        <!-- grid 2x2 seperti desain lama -->
         <div
           class="mt-10 lg:mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-12 lg:gap-x-20 gap-y-10 sm:gap-y-14 max-w-[620px]"
         >
-          <!-- item 1 -->
           <div class="flex items-start gap-3 sm:gap-4">
             <img
-              src="/img/affordable.png"
+              src="img/affordable.png"
               alt="Affordable Prices"
               class="w-12 sm:w-14 lg:w-16 flex-shrink-0"
             />
@@ -197,10 +210,9 @@
             </div>
           </div>
 
-          <!-- item 2 -->
           <div class="flex items-start gap-3 sm:gap-4">
             <img
-              src="/img/credible.png"
+              src="img/credible.png"
               alt="Credible & Trustworthy"
               class="w-12 sm:w-14 lg:w-16 flex-shrink-0"
             />
@@ -215,10 +227,9 @@
             </div>
           </div>
 
-          <!-- item 3 -->
           <div class="flex items-start gap-3 sm:gap-4">
             <img
-              src="/img/strategic.png"
+              src="img/strategic.png"
               alt="Strategic & Trusted Locations"
               class="w-12 sm:w-14 lg:w-16 flex-shrink-0"
             />
@@ -233,10 +244,9 @@
             </div>
           </div>
 
-          <!-- item 4 -->
           <div class="flex items-start gap-3 sm:gap-4">
             <img
-              src="/img/24.png"
+              src="img/24.png"
               alt="24/7 Customer Support"
               class="w-12 sm:w-14 lg:w-16 flex-shrink-0"
             />
@@ -253,24 +263,22 @@
         </div>
       </div>
 
-      <!-- KANAN: foto gedung + overlay + logo bulat -->
+      <!-- KANAN -->
       <div
         class="relative flex-1 flex items-center justify-center min-h-[360px] md:min-h-[520px]"
         style="
-          background-image: url('/img/why.png');
+          background-image: url('img/why.png');
           background-size: cover;
           background-position: center;
         "
       >
-        <!-- overlay biru transparan -->
         <div class="absolute inset-0 bg-[rgba(0,20,80,0.45)]"></div>
 
-        <!-- lingkaran putih dengan logo -->
         <div
           class="relative w-52 h-52 sm:w-60 sm:h-60 lg:w-[280px] lg:h-[280px] rounded-full bg-white flex items-center justify-center"
         >
           <img
-            src="/img/logo1.jpg"
+            src="img/logo1.jpg"
             alt="ThreeKost Logo"
             class="max-w-[75%] h-auto"
           />
@@ -283,7 +291,6 @@
       <div
         class="mx-auto max-w-[1200px] flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-[40px]"
       >
-        <!-- Kiri -->
         <div class="flex-1 lg:basis-[440px]">
           <h2
             class="text-[40px] sm:text-[50px] lg:text-[60px] font-bold mb-4 leading-tight text-[#111]"
@@ -301,13 +308,12 @@
           </p>
         </div>
 
-        <!-- Kanan: card biru -->
         <div class="flex-1 lg:basis-[540px] flex justify-center">
           <div
             class="w-full max-w-[540px] bg-[#001974] text-white rounded-[70px] pt-[64px] pb-[150px] px-[80px] shadow-[0_22px_48px_rgba(0,0,0,0.2)]"
           >
             <img
-              src="/img/lamp.png"
+              src="img/lamp.png"
               alt="Looking for a kost"
               class="w-[95px] mx-auto mb-[36px]"
             />
@@ -338,19 +344,16 @@
     <!-- Hosting Section -->
     <section class="px-5 md:px-10 lg:px-16 py-20 bg-white">
       <div class="relative rounded-[40px] overflow-hidden shadow-2xl">
-        <!-- Gambar -->
         <img
-          src="/img/hosting.png"
+          src="img/hosting.png"
           alt="ThreeKost Building"
           class="w-full h-auto"
         />
 
-        <!-- Overlay -->
         <div
           class="absolute inset-0 bg-gradient-to-r from-white/85 via-white/60 to-transparent"
         ></div>
 
-        <!-- Konten -->
         <div class="absolute top-1/2 left-[8%] -translate-y-1/2 max-w-md">
           <h2 class="text-3xl md:text-4xl font-bold mb-4">
             Try Hosting<br />With Us
@@ -379,10 +382,9 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
-        <!-- Card 1 -->
         <article class="flex flex-col">
           <img
-            src="/img/budget.png"
+            src="img/budget.png"
             alt="Budget-Friendly Living"
             class="w-full h-auto"
           />
@@ -394,10 +396,9 @@
           </div>
         </article>
 
-        <!-- Card 2 -->
         <article class="flex flex-col">
           <img
-            src="/img/smart.png"
+            src="img/smart.png"
             alt="Smart Renting Guide"
             class="w-full h-auto"
           />
@@ -411,10 +412,9 @@
           </div>
         </article>
 
-        <!-- Card 3 -->
         <article class="flex flex-col">
           <img
-            src="/img/comfort.png"
+            src="img/comfort.png"
             alt="Comfort & Lifestyle"
             class="w-full h-auto"
           />
@@ -441,19 +441,16 @@
       <div
         class="relative overflow-hidden rounded-[32px] md:rounded-[40px] shadow-2xl"
       >
-        <!-- Background image -->
         <img
-          src="/img/discover.png"
+          src="img/discover.png"
           alt="Discover More Amazing Kost"
           class="w-full h-[260px] sm:h-[320px] md:h-[380px] lg:h-[420px] object-cover"
         />
 
-        <!-- Gradient overlay (lebih terang di kiri untuk teks) -->
         <div
           class="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent"
         ></div>
 
-        <!-- Content -->
         <div
           class="absolute inset-y-0 left-0 flex items-center px-6 sm:px-10 lg:px-16"
         >
@@ -482,7 +479,6 @@
     <!-- Top Rated Kosts Section -->
     <section class="bg-white px-5 md:px-10 lg:px-16 py-16">
       <div class="max-w-7xl mx-auto">
-        <!-- Heading -->
         <div class="mb-10">
           <h2
             class="text-3xl md:text-4xl font-bold leading-tight text-[#484848]"
@@ -492,25 +488,22 @@
           <div class="w-32 h-[3px] bg-[#484848] mt-4"></div>
         </div>
 
-        <!-- Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Card 1: SkyView Kost Exclusive -->
+          <!-- Card 1 -->
           <article
             class="relative flex flex-col rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
           >
             <div class="relative">
               <img
-                src="/img/skyview.png"
+                src="img/skyview.png"
                 alt="SkyView Kost Exclusive"
                 class="w-full h-56 md:h-60 object-cover"
               />
 
-              <!-- Rating display -->
               <div
                 class="absolute top-3 left-3 flex items-center gap-2 text-gray-800"
               >
                 <div class="flex gap-1 text-gray-700">
-                  <!-- representasi 3.5: 3 full, 1 half, 1 empty -->
                   <span class="text-2xl not-italic leading-none">★</span>
                   <span class="text-2xl not-italic leading-none">★</span>
                   <span class="text-2xl not-italic leading-none">★</span>
@@ -523,19 +516,17 @@
                 >
               </div>
 
-              <!-- Heart -->
               <button
                 class="absolute top-3 right-3 w-10 h-10 rounded-[14px] bg-white/95 flex items-center justify-center shadow-md"
               >
                 <i class="text-2xl not-italic leading-none text-gray-700">♡</i>
               </button>
 
-              <!-- Avatar -->
               <div
                 class="absolute bottom-4 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
               >
                 <img
-                  src="/img/host1.png"
+                  src="img/host1.png"
                   alt="Host SkyView"
                   class="w-full h-full object-cover"
                 />
@@ -554,23 +545,21 @@
             </div>
           </article>
 
-          <!-- Card 2: CozyNest Kost -->
+          <!-- Card 2 -->
           <article
             class="relative flex flex-col rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
           >
             <div class="relative">
               <img
-                src="/img/cozy.png"
+                src="img/cozy.png"
                 alt="CozyNest Kost"
                 class="w-full h-56 md:h-60 object-cover"
               />
 
-              <!-- Rating display -->
               <div
                 class="absolute top-3 left-3 flex items-center gap-2 text-gray-800"
               >
                 <div class="flex gap-1 text-gray-700">
-                  <!-- representasi 2.5: 2 full, 1 half, 2 empty -->
                   <span class="text-2xl not-italic leading-none">★</span>
                   <span class="text-2xl not-italic leading-none">★</span>
                   <span class="text-2xl not-italic leading-none">⯪</span>
@@ -593,7 +582,7 @@
                 class="absolute bottom-4 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
               >
                 <img
-                  src="/img/host2.jpg"
+                  src="img/host2.jpg"
                   alt="Host CozyNest"
                   class="w-full h-full object-cover"
                 />
@@ -612,23 +601,21 @@
             </div>
           </article>
 
-          <!-- Card 3: Harmony Kost Family -->
+          <!-- Card 3 -->
           <article
             class="relative flex flex-col rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
           >
             <div class="relative">
               <img
-                src="/img/harmony.png"
+                src="img/harmony.png"
                 alt="Harmony Kost Family"
                 class="w-full h-56 md:h-60 object-cover"
               />
 
-              <!-- Rating display -->
               <div
                 class="absolute top-3 left-3 flex items-center gap-2 text-gray-800"
               >
                 <div class="flex gap-1 text-gray-700">
-                  <!-- representasi 4.5: 4 full, 1 half -->
                   <span class="text-2xl not-italic leading-none">★</span>
                   <span class="text-2xl not-italic leading-none">★</span>
                   <span class="text-2xl not-italic leading-none">★</span>
@@ -651,7 +638,7 @@
                 class="absolute bottom-4 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
               >
                 <img
-                  src="/img/host3.png"
+                  src="img/host3.png"
                   alt="Host Harmony"
                   class="w-full h-full object-cover"
                 />
@@ -671,23 +658,21 @@
             </div>
           </article>
 
-          <!-- Card 4: SmartStay Kost -->
+          <!-- Card 4 -->
           <article
             class="relative flex flex-col rounded-[26px] overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.15)] bg-white"
           >
             <div class="relative">
               <img
-                src="/img/smartstay.png"
+                src="img/smartstay.png"
                 alt="SmartStay Kost"
                 class="w-full h-56 md:h-60 object-cover"
               />
 
-              <!-- Rating display -->
               <div
                 class="absolute top-3 left-3 flex items-center gap-2 text-gray-800"
               >
                 <div class="flex gap-1 text-gray-700">
-                  <!-- representasi 5.0: 5 full -->
                   <span class="text-2xl not-italic leading-none">★</span>
                   <span class="text-2xl not-italic leading-none">★</span>
                   <span class="text-2xl not-italic leading-none">★</span>
@@ -710,7 +695,7 @@
                 class="absolute bottom-4 left-5 w-16 h-16 rounded-full overflow-hidden shadow-md"
               >
                 <img
-                  src="/img/host4.png"
+                  src="img/host4.png"
                   alt="Host SmartStay"
                   class="w-full h-full object-cover"
                 />
@@ -733,282 +718,263 @@
       </div>
     </section>
 
-   <!-- Download Our Mobile App Section -->
-<section class="bg-white py-16">
-  <div class="max-w-9xl mx-auto px-6 md:px-12 lg:px-20">
-    <!-- Card biru di tengah -->
-    <div
-      class="bg-[#A8B8FF] rounded-[32px] md:rounded-[40px] px-8 md:px-12 lg:px-20 py-12 md:py-16 flex flex-col md:flex-row items-center justify-between gap-10"
-    >
-      <!-- Text + Buttons -->
-      <div>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-          Download Our<br />Mobile App
-        </h2>
+    <!-- Download Our Mobile App Section -->
+    <section class="bg-white py-16">
+      <div class="max-w-9xl mx-auto px-6 md:px-12 lg:px-20">
+        <div
+          class="bg-[#A8B8FF] rounded-[32px] md:rounded-[40px] px-8 md:px-12 lg:px-20 py-12 md:py-16 flex flex-col md:flex-row items-center justify-between gap-10"
+        >
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+              Download Our<br />Mobile App
+            </h2>
 
-        <p class="text-white text-sm md:text-base mb-8">
-          Available for free on these platforms
-        </p>
+            <p class="text-white text-sm md:text-base mb-8">
+              Available for free on these platforms
+            </p>
 
-        <div class="flex flex-wrap items-center gap-4">
-          <!-- PlayStore Button -->
-          <button
-            class="flex items-center gap-3 bg-white px-7 py-3 rounded-xl shadow-sm hover:shadow-md transition"
-          >
+            <div class="flex flex-wrap items-center gap-4">
+              <button
+                class="flex items-center gap-3 bg-white px-7 py-3 rounded-xl shadow-sm hover:shadow-md transition"
+              >
+                <img
+                  src="img/playstore.png"
+                  alt="PlayStore"
+                  class="w-6"
+                />
+                <span class="font-medium text-gray-800">PlayStore</span>
+              </button>
+
+              <button
+                class="flex items-center gap-3 bg-white px-7 py-3 rounded-xl shadow-sm hover:shadow-md transition"
+              >
+                <img
+                  src="img/apple.png"
+                  alt="AppleStore"
+                  class="w-6"
+                />
+                <span class="font-medium text-gray-800">AppleStore</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex justify-center w-full md:w-auto">
             <img
-              src="/img/playstore.png"
-              alt="PlayStore"
-              class="w-6"
+              src="img/phone.png"   
+              alt="Mobile App Illustration"
+              class="w-40 md:w-52 lg:w-60 object-contain"
             />
-            <span class="font-medium text-gray-800">PlayStore</span>
-          </button>
-
-          <!-- Apple Store Button -->
-          <button
-            class="flex items-center gap-3 bg-white px-7 py-3 rounded-xl shadow-sm hover:shadow-md transition"
-          >
-            <img
-              src="/img/apple.png"
-              alt="AppleStore"
-              class="w-6"
-            />
-            <span class="font-medium text-gray-800">AppleStore</span>
-          </button>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Phone Icon pakai gambar -->
-      <div class="flex justify-center w-full md:w-auto">
-        <img
-          src="/img/phone.png"   
-          alt="Mobile App Illustration"
-          class="w-40 md:w-52 lg:w-60 object-contain"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Smart Guide Section -->
-<section class="bg-white py-20 md:py-28">
-  <div
-    class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-14 lg:gap-20"
-  >
-    <!-- Kiri: Teks -->
-    <div class="flex-1">
-      <h2
-        class="text-xl md:text-4xl lg:text-4xl font-bold leading-tight text-[#4A4A4A]"
+    <!-- Smart Guide Section -->
+    <section class="bg-white py-20 md:py-28">
+      <div
+        class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-14 lg:gap-20"
       >
-        Smart Guide to Comfortable<br />
-        and Safe Kost Renting
-      </h2>
+        <div class="flex-1">
+          <h2
+            class="text-xl md:text-4xl lg:text-4xl font-bold leading-tight text-[#4A4A4A]"
+          >
+            Smart Guide to Comfortable<br />
+            and Safe Kost Renting
+          </h2>
 
-      <!-- Garis bawah -->
-      <div class="w-24 h-1.5 bg-[#4A4A4A] rounded-full mt-8 mb-10"></div>
+          <div class="w-24 h-1.5 bg-[#4A4A4A] rounded-full mt-8 mb-10"></div>
 
-      <!-- Deskripsi -->
-      <p
-        class="max-w-xl text-2xl md:text-base leading-relaxed text-gray-400"
-      >
-        Find practical tips and insights to help you choose the perfect kost.
-        From understanding rental terms to ensuring safety and comfort, this
-        guide helps make your kost-hunting journey smarter, easier, and
-        worry-free.
-      </p>
+          <p
+            class="max-w-xl text-2xl md:text-base leading-relaxed text-gray-400"
+          >
+            Find practical tips and insights to help you choose the perfect kost.
+            From understanding rental terms to ensuring safety and comfort, this
+            guide helps make your kost-hunting journey smarter, easier, and
+            worry-free.
+          </p>
 
-      <!-- Link kecil + tombol -->
-      <div class="mt-10 space-y-8">
-        <!-- Link teks -->
-        <div
-          class="flex flex-col sm:flex-row gap-4 sm:gap-10 text-sm md:text-base font-semibold text-[#4A4A4A]"
-        >
-          <button class="hover:text-blue-500 transition">
-            Ask A Question
-          </button>
-          <button class="hover:text-blue-500 transition">
-            Find A Property
-          </button>
+          <div class="mt-10 space-y-8">
+            <div
+              class="flex flex-col sm:flex-row gap-4 sm:gap-10 text-sm md:text-base font-semibold text-[#4A4A4A]"
+            >
+              <button class="hover:text-blue-500 transition">
+                Ask A Question
+              </button>
+              <button class="hover:text-blue-500 transition">
+                Find A Property
+              </button>
+            </div>
+
+            <button
+              class="inline-flex items-center justify-center px-10 md:px-14 py-4 rounded-full bg-[#2F80FF] text-white font-semibold text-sm md:text-base shadow-md hover:bg-[#2163d6] transition"
+            >
+              Discover More
+            </button>
+          </div>
         </div>
 
-        <!-- Tombol besar -->
-        <button
-          class="inline-flex items-center justify-center px-10 md:px-14 py-4 rounded-full bg-[#2F80FF] text-white font-semibold text-sm md:text-base shadow-md hover:bg-[#2163d6] transition"
-        >
-          Discover More
-        </button>
-      </div>
-    </div>
-
-    <!-- Kanan: Gambar -->
-    <div class="flex-1 flex justify-center">
-      <img
-        src="/img/smartguide.png"  
-        alt="Smart Guide Kost"
-        class="w-80 max-w-md lg:max-w-lg object-cover"
-      />
-    </div>
-  </div>
-</section>
-<footer class="bg-white mt-16">
-  <!-- NEWSLETTER BAR -->
-  <div class="bg-[#A9D4FF]">
-    <div
-      class="max-w-6xl mx-auto px-6 md:px-10 lg:px-16 py-5 md:py-6 flex flex-col md:flex-row items-center gap-4 md:gap-8 justify-between"
-    >
-      <!-- Text -->
-      <div>
-        <h3 class="text-sm md:text-base font-bold tracking-wide text-gray-800">
-          NEWSLETTER
-        </h3>
-        <p class="text-xs md:text-sm text-gray-700">Stay Upto Date</p>
-      </div>
-
-      <!-- Input email -->
-      <form class="w-full md:flex-1">
-        <div
-          class="flex items-center bg-white rounded-full pl-6 pr-2 py-2 md:py-3 shadow-sm"
-        >
-          <input
-            type="email"
-            placeholder="Your Email..."
-            class="flex-1 bg-transparent outline-none text-sm md:text-base text-gray-700 placeholder:text-gray-400"
+        <div class="flex-1 flex justify-center">
+          <img
+            src="img/smartguide.png"  
+            alt="Smart Guide Kost"
+            class="w-80 max-w-md lg:max-w-lg object-cover"
           />
-          <button
-            type="submit"
-            class="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#0065FF] text-white"
-          >
-            <i class="fas fa-paper-plane text-sm"></i>
-          </button>
         </div>
-      </form>
-    </div>
-  </div>
+      </div>
+    </section>
 
-  <!-- MAIN FOOTER CONTENT -->
-  <div class="max-w-6xl mx-auto px-6 md:px-10 lg:px-16 py-12 md:py-16">
-    <div
-      class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 lg:gap-12"
-    >
-      <!-- Brand + description + buttons -->
-      <div class="md:col-span-2">
-        <img
-          src="/img/logo1.jpg"
-          alt="ThreeKost Logo"
-          class="h-16 w-auto mb-4"
-        />
-        <p
-          class="text-sm text-gray-500 leading-relaxed mb-8 max-w-sm"
+    <!-- Footer -->
+    <footer class="bg-white mt-16">
+      <!-- NEWSLETTER BAR -->
+      <div class="bg-[#A9D4FF]">
+        <div
+          class="max-w-6xl mx-auto px-6 md:px-10 lg:px-16 py-5 md:py-6 flex flex-col md:flex-row items-center gap-4 md:gap-8 justify-between"
         >
-          Three Kost is a modern room-rental web app that makes it easy
-          to find comfortable, affordable housing that fits your
-          needs—no in-person visits required.
-        </p>
+          <div>
+            <h3 class="text-sm md:text-base font-bold tracking-wide text-gray-800">
+              NEWSLETTER
+            </h3>
+            <p class="text-xs md:text-sm text-gray-700">Stay Upto Date</p>
+          </div>
 
-        <div class="flex flex-wrap items-center gap-4">
-          <!-- PlayStore Button -->
-          <button
-            class="flex items-center gap-3 bg-[#ECECEC] px-6 py-3 rounded-xl text-sm text-gray-800"
-          >
+          <form class="w-full md:flex-1">
+            <div
+              class="flex items-center bg-white rounded-full pl-6 pr-2 py-2 md:py-3 shadow-sm"
+            >
+              <input
+                type="email"
+                placeholder="Your Email..."
+                class="flex-1 bg-transparent outline-none text-sm md:text-base text-gray-700 placeholder:text-gray-400"
+              />
+              <button
+                type="submit"
+                class="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#0065FF] text-white"
+              >
+                <i class="fas fa-paper-plane text-sm"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MAIN FOOTER CONTENT -->
+      <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 py-14 md:py-20">
+        <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+          <div class="lg:w-[40%] xl:w-[38%]">
             <img
-              src="/img/playstore.png"
-              alt="PlayStore"
-              class="w-5"
+              src="img/logo1.jpg"
+              alt="ThreeKost Logo"
+              class="h-20 md:h-24 w-auto mb-4"
             />
-            <span>PlayStore</span>
-          </button>
 
-          <!-- AppleStore Button -->
-          <button
-            class="flex items-center gap-3 bg-[#ECECEC] px-6 py-3 rounded-xl text-sm text-gray-800"
-          >
-            <img
-              src="/img/apple.png"
-              alt="AppleStore"
-              class="w-5"
-            />
-            <span>AppleStore</span>
-          </button>
+            <p
+              class="text-base md:text-lg text-gray-500 leading-relaxed mb-8 max-w-md"
+            >
+              Three Kost is a modern room-rental web app that makes it easy
+              to find comfortable, affordable housing that fits your
+              needs—no in-person visits required.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4">
+              <button
+                class="flex items-center gap-3 bg-[#ECECEC] px-7 py-3 rounded-xl text-base md:text-lg text-gray-800"
+              >
+                <img
+                  src="img/playstore.png"
+                  alt="PlayStore"
+                  class="w-5 md:w-6"
+                />
+                <span>PlayStore</span>
+              </button>
+
+              <button
+                class="flex items-center gap-3 bg-[#ECECEC] px-7 py-3 rounded-xl text-base md:text-lg text-gray-800"
+              >
+                <img
+                  src="img/apple.png"
+                  alt="AppleStore"
+                  class="w-5 md:w-6"
+                />
+                <span>AppleStore</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-6 xl:gap-8">
+            <div>
+              <h4
+                class="text-base md:text-lg font-bold tracking-wide text-gray-800 mb-3"
+              >
+                COMPANY
+              </h4>
+              <ul class="space-y-1.5 text-sm md:text-base text-gray-700">
+                <li><a href="#" class="hover:text-blue-500">About Us</a></li>
+                <li>
+                  <a href="#" class="hover:text-blue-500">Legal Information</a>
+                </li>
+                <li><a href="#" class="hover:text-blue-500">Contact Us</a></li>
+                <li><a href="#" class="hover:text-blue-500">Blogs</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4
+                class="text-base md:text-lg font-bold tracking-wide text-gray-800 mb-3"
+              >
+                HELP CENTER
+              </h4>
+              <ul class="space-y-1.5 text-sm md:text-base text-gray-700">
+                <li>
+                  <a href="#" class="hover:text-blue-500">Find a Property</a>
+                </li>
+                <li><a href="#" class="hover:text-blue-500">How To Host?</a></li>
+                <li><a href="#" class="hover:text-blue-500">Why Us?</a></li>
+                <li><a href="#" class="hover:text-blue-500">FAQs</a></li>
+                <li>
+                  <a href="#" class="hover:text-blue-500">Rental Guides</a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4
+                class="text-base md:text-lg font-bold tracking-wide text-gray-800 mb-3"
+              >
+                CONTACT INFO
+              </h4>
+              <ul class="space-y-1.5 text-sm md:text-base text-gray-700 mb-5">
+                <li>Phone: 892364729</li>
+                <li>Email: threekost@gmail.com</li>
+                <li>Location: Salatiga, Central Java</li>
+              </ul>
+
+              <div class="flex items-center gap-4 text-gray-700 text-2xl">
+                <a href="#" class="hover:text-blue-600">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="hover:text-blue-600">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="hover:text-blue-600">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="hover:text-blue-600">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- COMPANY -->
-      <div>
-        <h4
-          class="text-sm md:text-base font-bold tracking-wide text-gray-700 mb-4"
+      <!-- BOTTOM BAR -->
+      <div class="border-t">
+        <div
+          class="max-w-6xl mx-auto px-6 md:px-10 lg:px-16 py-4 text-xs md:text-sm text-gray-500"
         >
-          COMPANY
-        </h4>
-        <ul class="space-y-2 text-sm text-gray-600">
-          <li><a href="#" class="hover:text-blue-500">About Us</a></li>
-          <li>
-            <a href="#" class="hover:text-blue-500">Legal Information</a>
-          </li>
-          <li><a href="#" class="hover:text-blue-500">Contact Us</a></li>
-          <li><a href="#" class="hover:text-blue-500">Blogs</a></li>
-        </ul>
-      </div>
-
-      <!-- HELP CENTER -->
-      <div>
-        <h4
-          class="text-sm md:text-base font-bold tracking-wide text-gray-700 mb-4"
-        >
-          HELP CENTER
-        </h4>
-        <ul class="space-y-2 text-sm text-gray-600">
-          <li>
-            <a href="#" class="hover:text-blue-500">Find a Property</a>
-          </li>
-          <li><a href="#" class="hover:text-blue-500">How To Host?</a></li>
-          <li><a href="#" class="hover:text-blue-500">Why Us?</a></li>
-          <li><a href="#" class="hover:text-blue-500">FAQs</a></li>
-          <li>
-            <a href="#" class="hover:text-blue-500">Rental Guides</a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- CONTACT INFO -->
-      <div>
-        <h4
-          class="text-sm md:text-base font-bold tracking-wide text-gray-700 mb-4"
-        >
-          CONTACT INFO
-        </h4>
-        <ul class="space-y-2 text-sm text-gray-600 mb-6">
-          <li>Phone: 892364729</li>
-          <li>Email: threekost@gmail.com</li>
-          <li>Location: Salatiga, Central Java</li>
-        </ul>
-
-        <!-- Social icons -->
-        <div class="flex items-center gap-4 text-gray-700 text-lg">
-          <a href="#" class="hover:text-blue-600">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="hover:text-blue-600">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#" class="hover:text-blue-600">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#" class="hover:text-blue-600">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
+          © 2022 thecreation.design | All rights reserved
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- BOTTOM BAR -->
-  <div class="border-t">
-    <div
-      class="max-w-6xl mx-auto px-6 md:px-10 lg:px-16 py-4 text-xs md:text-sm text-gray-500"
-    >
-      © 2022 thecreation.design | All rights reserved
-    </div>
-  </div>
-</footer>
-
+    </footer>
   </body>
 </html>
