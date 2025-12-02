@@ -85,13 +85,7 @@ if ($stmt && $stmt->execute()) {
 <?php
 require '../../config.php';
 
-// --- FLAG WELCOME POPUP SETELAH SIGNUP/LOGIN ---
-$showWelcome = !empty($_SESSION['show_welcome']);
-$welcomeName = $_SESSION['user_name'] ?? 'User';
-if ($showWelcome) {
-    // supaya popup hanya sekali
-    unset($_SESSION['show_welcome']);
-}
+
 
 // --- FLAG LOGIN ERROR & AUTO OPEN LOGIN MODAL ---
 $loginError = $_SESSION['login_error'] ?? '';

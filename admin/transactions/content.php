@@ -3,7 +3,7 @@
         <!-- Header -->
         <header class="mb-6">
           <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">
-            Hello, <?php echo htmlspecialchars($hostName); ?>!
+            Hello, <?php echo htmlspecialchars($userName); ?>
           </h2>
           <p class="mt-1 text-sm sm:text-base text-gray-500">
             You are currently viewing the <span class="font-semibold">overview of your kosts</span>.

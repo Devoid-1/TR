@@ -30,22 +30,26 @@ if (!$kost) {
     exit;
 }
 
-$mainImage  = htmlspecialchars($kost['main_image']);
+$mainImage  = htmlspecialchars('admin/kosts/' . $kost['main_image']);
 $kostName   = htmlspecialchars($kost['name']);
 $address    = htmlspecialchars($kost['address']);
 $city       = htmlspecialchars($kost['city']);
 $priceMonth = (int)$kost['price_month'];        // as number
 $deposit    = 50000;                              // contoh deposit tetap
 
-// ================== PROSES FORM ==================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $full_name      = trim($_POST['full_name'] ?? '');
-    $nik            = trim($_POST['nik'] ?? '');
-    $phone_number   = trim($_POST['phone_number'] ?? '');
-
+    $full_name    = trim($_POST['full_name'] ?? '');
+    $nik          = trim($_POST['nik'] ?? '');
+    $phone_number = trim($_POST['phone_number'] ?? '');
 
     if ($full_name === '' || $nik === '' || $phone_number === '') {
         $error = "Semua field wajib diisi.";
+    } elseif (!ctype_digit($nik)) {
+        $error = "NIK hanya boleh berisi angka 0-9.";
+    } elseif (strlen($nik) !== 16) {
+        $error = "NIK harus 16 digit.";
+    } elseif (!ctype_digit($phone_number)) {
+        $error = "Nomor HP hanya boleh berisi angka 0-9.";
     } else {
         $stmt = $conn->prepare("
             INSERT INTO bookings
@@ -54,21 +58,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ");
 
         $stmt->bind_param(
-    "iisssii",
-    $userId,
-    $kostId,
-    $full_name,
-    $nik,
-    $phone_number,
-    $priceMonth,
-    $deposit
-);
-
+            "iisssii",
+            $userId,
+            $kostId,
+            $full_name,
+            $nik,
+            $phone_number,
+            $priceMonth,
+            $deposit
+        );
 
         if ($stmt->execute()) {
             $bookingId = $conn->insert_id;
             $stmt->close();
-            // redirect ke halaman payment
             header("Location: payment.php?booking_id=" . $bookingId);
             exit;
         } else {
@@ -77,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -245,6 +248,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <input
                 type="text"
                 name="nik"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                maxlength="16"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '');"
                 class="w-full rounded-lg border border-[#b7c0f5] px-3 py-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#5f7cff]"
                 required
               />
@@ -258,6 +265,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <input
                 type="text"
                 name="phone_number"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '');"
                 class="w-full rounded-lg border border-[#b7c0f5] px-3 py-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#5f7cff]"
                 required
               />
@@ -267,7 +277,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <!-- BUTTONS -->
           <div class="flex flex-col md:flex-row justify-center gap-4 mt-8">
             <a
-              href="detail_kost.php?id=<?php echo $kostId; ?>"
+              href="kost_detail.php?id=<?php echo $kostId; ?>"
               class="inline-flex items-center justify-center rounded-full bg-gray-300 text-gray-800 px-10 py-2.5 text-sm md:text-base font-medium hover:bg-gray-400"
             >
               Cancel

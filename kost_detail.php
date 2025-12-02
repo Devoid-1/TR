@@ -2,6 +2,12 @@
 session_start();
 require 'config.php';
 
+if (!isset($_SESSION['user_id'])) {
+    // Bisa redirect ke halaman depan / halaman kost, terserah kamu
+    header("Location: index.php");
+    exit;
+}
+
 // Ambil id kost dari URL ?id=...
 $kostId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($kostId <= 0) {
@@ -61,6 +67,7 @@ $pets     = 0;
   <style>
     body { font-family: "Poppins", sans-serif; }
   </style>
+    <script src="script.js" defer></script>
 </head>
 <body class="bg-gray-50 text-slate-900">
 
@@ -266,10 +273,21 @@ $pets     = 0;
             </div>
 
             <!-- Tombol lebih panjang -->
-            <a href="booking.php?id=<?php echo $kostId; ?>"
-   class="block w-full rounded-full bg-[#001b6f] py-3.5 md:py-4 text-sm md:text-base font-semibold text-white shadow-md hover:bg-[#001454] transition text-center">
-  Book Now
-</a>
+            <?php if (isset($_SESSION['user_id'])): ?>
+  <!-- USER SUDAH LOGIN → BOLEH KE HALAMAN BOOKING -->
+  <a href="booking.php?id=<?= (int)$kostId; ?>"
+     class="block w-full rounded-full bg-[#001b6f] py-3.5 md:py-4 text-sm md:text-base font-semibold text-white shadow-md hover:bg-[#001454] transition text-center">
+    Book Now
+  </a>
+<?php else: ?>
+  <!-- USER BELUM LOGIN → BUKA MODAL SIGNUP -->
+  <button type="button"
+     id="bookNowBtn"
+     class="block w-full rounded-full bg-[#001b6f] py-3.5 md:py-4 text-sm md:text-base font-semibold text-white shadow-md hover:bg-[#001454] transition text-center">
+    Book Now
+  </button>
+<?php endif; ?>
+
 
 
             <!-- Property Inquiry & Contact Host sejajar -->
@@ -639,6 +657,23 @@ $pets     = 0;
       <?php 
         @include('footer.php')
       ?>
+  <!-- Global Signup/Login/Welcome Modals -->
+  <?php include 'auth_modals.php'; ?>
 
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const bookBtn = document.getElementById("bookNowBtn");
+  if (!bookBtn) return; // kalau user sudah login, tombol ini tidak ada
+
+  bookBtn.addEventListener("click", function () {
+    const signupModal = document.getElementById("signupModal");
+    if (!signupModal) return;
+
+    // Cara buka modal sama seperti di navbar
+    signupModal.classList.remove("hidden");
+    signupModal.classList.add("flex");
+  });
+});
+</script>
 </body>
 </html>

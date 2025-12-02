@@ -24,8 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "toggleConfirmPassword"
   );
 
-
-
+  // =============== THEME ===============
   function getInitialTheme() {
     // 1. Cek di localStorage dulu
     const stored = localStorage.getItem("theme");
@@ -34,13 +33,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // 2. Kalau belum ada, ikuti preferensi sistem
-    if (window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
       return "dark";
     }
 
     // 3. Default: light
     return "light";
+  }
+
+  // >>> INI YANG KEMARIN HILANG <<<
+  function applyTheme(theme) {
+    if (!html) return;
+
+    const isDark = theme === "dark";
+
+    if (isDark) {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+
+    // Optional: update icon & text jika ada
+    if (themeToggleIcon) {
+      themeToggleIcon.classList.toggle("fa-sun", isDark);
+      themeToggleIcon.classList.toggle("fa-moon", !isDark);
+    }
+
+    if (themeToggleText) {
+      themeToggleText.textContent = isDark ? "Dark mode" : "Light mode";
+    }
   }
 
   function initTheme() {
@@ -62,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener("click", toggleTheme);
   }
-
 
   // Helper: tampilkan step 1
   function showStep1() {
@@ -358,26 +381,24 @@ document.addEventListener("DOMContentLoaded", function () {
       closeWelcomeModal();
       closeLoginModal();
     }
-  
-  
   });
-  
+
   // ===========================
   // PAYMENT PAGE - booking.php
   // ===========================
-  const mbBox       = document.getElementById("mbanking-box");
+  const mbBox = document.getElementById("mbanking-box");
   const mbCollapsed = document.getElementById("mbanking-collapsed");
-  const mbExpanded  = document.getElementById("mbanking-expanded");
+  const mbExpanded = document.getElementById("mbanking-expanded");
 
-  const ewBox       = document.getElementById("ewallet-box");
+  const ewBox = document.getElementById("ewallet-box");
   const ewCollapsed = document.getElementById("ewallet-collapsed");
-  const ewExpanded  = document.getElementById("ewallet-expanded");
+  const ewExpanded = document.getElementById("ewallet-expanded");
 
-  const paymentModal       = document.getElementById("payment-modal");
-  const paymentModalClose  = document.getElementById("payment-modal-close");
-  const modalMethod        = document.getElementById("modal-method");
+  const paymentModal = document.getElementById("payment-modal");
+  const paymentModalClose = document.getElementById("payment-modal-close");
+  const modalMethod = document.getElementById("modal-method");
   const paymentMethodInput = document.getElementById("payment-method-input");
-  const paymentCatInput    = document.getElementById("payment-category-input");
+  const paymentCatInput = document.getElementById("payment-category-input");
 
   // helper buka/tutup modal
   function openPaymentModal() {
@@ -436,15 +457,14 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.addEventListener("click", function (event) {
         event.stopPropagation(); // biar tidak mentrigger klik box
 
-        const method   = btn.dataset.paymentMethod || "";
+        const method = btn.dataset.paymentMethod || "";
         const category = btn.dataset.paymentCategory || "";
 
-        modalMethod.textContent = category && method
-          ? category + " - " + method
-          : method;
+        modalMethod.textContent =
+          category && method ? category + " - " + method : method;
 
         if (paymentMethodInput) paymentMethodInput.value = method;
-        if (paymentCatInput)    paymentCatInput.value    = category;
+        if (paymentCatInput) paymentCatInput.value = category;
 
         openPaymentModal();
       });
@@ -465,90 +485,83 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ===========================
+  // PROFILE PAGE – TABS + UNDERLINE ANIMASI
+  // ===========================
+  const tabLinks = document.querySelectorAll(".tab-link");
+  const tabPanels = document.querySelectorAll(".tab-panel");
+  const tabsNav = document.getElementById("tabs-nav");
+  const underline = document.getElementById("tab-underline");
 
-   // ===========================
-// PROFILE PAGE – TABS + UNDERLINE ANIMASI
-// ===========================
-const tabLinks  = document.querySelectorAll(".tab-link");
-const tabPanels = document.querySelectorAll(".tab-panel");
-const tabsNav   = document.getElementById("tabs-nav");
-const underline = document.getElementById("tab-underline");
-
-// geser underline ke bawah tombol yang aktif
-function setUnderline(btn) {
-  if (!tabsNav || !underline || !btn) return;
-  underline.style.width = btn.offsetWidth + "px";
-  underline.style.left  = btn.offsetLeft + "px";
-}
-
-if (tabLinks.length && tabPanels.length) {
-  // posisi awal di "Current Boarding"
-  const initialBtn =
-    document.querySelector(".tab-link[data-tab='current']") || tabLinks[0];
-  if (initialBtn) {
-    initialBtn.classList.add("text-[#343F7A]");
-    initialBtn.classList.remove("text-gray-400");
-    setUnderline(initialBtn);
+  // geser underline ke bawah tombol yang aktif
+  function setUnderline(btn) {
+    if (!tabsNav || !underline || !btn) return;
+    underline.style.width = btn.offsetWidth + "px";
+    underline.style.left = btn.offsetLeft + "px";
   }
 
-  tabLinks.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const target   = btn.dataset.tab;     // current | past | review
-      const targetId = "tab-" + target;
+  if (tabLinks.length && tabPanels.length) {
+    // posisi awal di "Current Boarding"
+    const initialBtn =
+      document.querySelector(".tab-link[data-tab='current']") || tabLinks[0];
+    if (initialBtn) {
+      initialBtn.classList.add("text-[#343F7A]");
+      initialBtn.classList.remove("text-gray-400");
+      setUnderline(initialBtn);
+    }
 
-      // update style tombol
-      tabLinks.forEach((link) => {
-        const isActive = link === btn;
-        if (isActive) {
-          link.classList.add("text-[#343F7A]");
-          link.classList.remove("text-gray-400");
-        } else {
-          link.classList.remove("text-[#343F7A]");
-          link.classList.add("text-gray-400");
-        }
+    tabLinks.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const target = btn.dataset.tab; // current | past | review
+        const targetId = "tab-" + target;
+
+        // update style tombol
+        tabLinks.forEach((link) => {
+          const isActive = link === btn;
+          if (isActive) {
+            link.classList.add("text-[#343F7A]");
+            link.classList.remove("text-gray-400");
+          } else {
+            link.classList.remove("text-[#343F7A]");
+            link.classList.add("text-gray-400");
+          }
+        });
+
+        // tampilkan panel yang dipilih (dengan animasi dari Tailwind)
+        tabPanels.forEach((panel) => {
+          const isTarget = panel.id === targetId;
+          if (isTarget) {
+            panel.classList.remove(
+              "opacity-0",
+              "translate-y-3",
+              "max-h-0",
+              "pointer-events-none"
+            );
+            panel.classList.add(
+              "opacity-100",
+              "translate-y-0",
+              "max-h-[2000px]",
+              "pointer-events-auto"
+            );
+          } else {
+            panel.classList.remove(
+              "opacity-100",
+              "translate-y-0",
+              "max-h-[2000px]",
+              "pointer-events-auto"
+            );
+            panel.classList.add(
+              "opacity-0",
+              "translate-y-3",
+              "max-h-0",
+              "pointer-events-none"
+            );
+          }
+        });
+
+        // pindahkan underline ke tab yg aktif
+        setUnderline(btn);
       });
-
-      // tampilkan panel yang dipilih (dengan animasi dari Tailwind)
-      tabPanels.forEach((panel) => {
-        const isTarget = panel.id === targetId;
-        if (isTarget) {
-          panel.classList.remove(
-            "opacity-0",
-            "translate-y-3",
-            "max-h-0",
-            "pointer-events-none"
-          );
-          panel.classList.add(
-            "opacity-100",
-            "translate-y-0",
-            "max-h-[2000px]",
-            "pointer-events-auto"
-          );
-        } else {
-          panel.classList.remove(
-            "opacity-100",
-            "translate-y-0",
-            "max-h-[2000px]",
-            "pointer-events-auto"
-          );
-          panel.classList.add(
-            "opacity-0",
-            "translate-y-3",
-            "max-h-0",
-            "pointer-events-none"
-          );
-        }
-      });
-
-      // pindahkan underline ke tab yg aktif
-      setUnderline(btn);
     });
-  });
-}
-
-
-
-
-
-
+  }
 });

@@ -93,6 +93,7 @@ if ($userId) {
       font-family: "Poppins", sans-serif;
     }
   </style>
+    <script src="script.js" defer></script>
 </head>
 <body class="bg-white text-gray-900">
 
@@ -278,6 +279,9 @@ if ($userId) {
   <?php 
     @include('footer.php')
   ?>
+
+    <!-- Global Signup/Login/Welcome Modals -->
+  <?php include 'auth_modals.php'; ?>
 
 </body>
 </html>

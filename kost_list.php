@@ -52,6 +52,7 @@ if ($userId) {
       font-family: "Poppins", sans-serif;
     }
   </style>
+    <script src="script.js" defer></script>
 </head>
 <body class="bg-[#F5F7FB] text-gray-900">
   <?php include 'navbar.php'; ?>
@@ -433,18 +434,24 @@ if ($userId) {
           </section>
 
           <!-- BUTTON OK -->
-          <div class="flex justify-center pt-2 pb-1">
+          <div class="flex justify-center pt-2 pb-1 gap-2">
             <button
               type="submit"
               class="px-10 py-2.5 rounded-full bg-indigo-500 text-white text-sm font-semibold shadow hover:bg-indigo-600"
             >
               OK
             </button>
+            <button
+              type="reset"
+              class="px-10 py-2.5 rounded-full bg-indigo-500 text-white text-sm font-semibold shadow hover:bg-indigo-600"
+            >
+              Reset
+            </button>
           </div>
         </form>
       </div>
     </div>
-    <!-- ================= END FILTER POPUP ================= -->\
+    <!-- ================= END FILTER POPUP ================= -->
 
 
     <script>
@@ -492,5 +499,8 @@ if ($userId) {
     <?php 
         @include('footer.php')
       ?>
+
+        <!-- Global Signup/Login/Welcome Modals -->
+  <?php include 'auth_modals.php'; ?>
 </body>
 </html>
