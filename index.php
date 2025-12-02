@@ -9,6 +9,22 @@ if ($showWelcome) {
     unset($_SESSION['show_welcome']);
 }
 
+$currentFile = basename($_SERVER['PHP_SELF']);
+
+if (isset($_SESSION['role'])) {
+    if ($_SESSION['role'] === 'admin' && $currentFile !== 'admin.php') {
+        header('Location: admin.php');
+        exit;
+    }
+
+    if ($_SESSION['role'] === 'host' && $currentFile !== 'host_dashboard.php') {
+        header('Location: host_dashboard.php');
+        exit;
+    }
+}
+
+
+
 // --- FLAG LOGIN ERROR & AUTO OPEN LOGIN MODAL ---
 $loginError = $_SESSION['login_error'] ?? '';
 $openLoginModal = !empty($_SESSION['login_open']);
@@ -45,6 +61,10 @@ unset($_SESSION['login_error']);
       rel="stylesheet"
     />
     <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         font-family: "Poppins", sans-serif;
       }
@@ -59,72 +79,15 @@ unset($_SESSION['login_error']);
       referrerpolicy="no-referrer"
     />
   </head>
+  
   <body class="bg-white text-gray-900">
-    <!-- Navbar -->
-    <header class="fixed top-0 left-0 z-50 w-full bg-white shadow-md">
-      <div
-        class="flex items-center justify-between h-[70px] px-4 md:px-8 lg:px-16"
-      >
-        <div class="flex items-center">
-          <img
-            src="img/logo1.jpg"
-            alt="ThreeKost Logo"
-            class="h-12 md:h-16 w-auto object-contain"
-          />
-        </div>
-
-        <!-- Menu desktop -->
-        <nav class="hidden md:flex space-x-6 text-gray-900 font-medium">
-          <a href="#" class="hover:text-blue-600 transition">About Us</a>
-          <a href="#" class="hover:text-blue-600 transition">Search Kost</a>
-          <a href="#" class="hover:text-blue-600 transition">Wishlist</a>
-          <a href="#" class="hover:text-blue-600 transition"
-            >Download Mobile App</a
-          >
-        </nav>
-
-        <!-- Kanan -->
-        <div class="flex items-center gap-3">
-          <button
-            class="hidden sm:inline-flex items-center rounded-full bg-[#5f7cff] px-5 py-2 text-sm font-medium text-white hover:bg-[#4767e5] transition"
-          >
-            Become A Host
-          </button>
-
-          <!-- Burger hanya di mobile/tablet -->
-          <i class="fas fa-bars text-2xl cursor-pointer md:hidden"></i>
-
-          <!-- Icon user -->
-          <?php if (isset($_SESSION['user_id'])): ?>
-            <!-- Sudah login: ke profile -->
-            <a href="profile.php" class="hidden md:inline-flex items-center justify-center">
-              <i class="fas fa-user-circle text-2xl cursor-pointer"></i>
-            </a>
-          <?php else: ?>
-            <!-- Belum login: buka modal signup (desktop) -->
-            <button
-              id="openSignup"
-              type="button"
-              class="hidden md:inline-flex items-center justify-center"
-            >
-              <i class="fas fa-user-circle text-2xl cursor-pointer"></i>
-            </button>
-
-            <!-- Belum login: icon user di mobile (opsional) -->
-            <button
-              id="openSignupMobile"
-              type="button"
-              class="md:hidden flex items-center justify-center"
-            >
-              <i class="fas fa-user-circle text-2xl cursor-pointer"></i>
-            </button>
-          <?php endif; ?>
-        </div>
-      </div>
-    </header>
+    <?php 
+        @include('navbar.php')
+      ?>
 
     <!-- Hero Section -->
-    <section
+    <section    
+    
       class="relative mt-[70px] h-[90vh] bg-center bg-cover"
       style="background-image: url('img/bghero.png')"
     >
@@ -149,7 +112,10 @@ unset($_SESSION['login_error']);
             placeholder="Looking for a comfy room? Near campus? Just type it here..."
             class="flex-1 border-none outline-none text-sm md:text-base px-2 text-gray-800"
           />
+          <!-- tombol filter: buka popup -->
           <button
+            type="button"
+            id="openFilter"
             class="flex items-center justify-center rounded-full bg-blue-500 text-white p-3 hover:bg-blue-600 transition"
           >
             <i class="fas fa-sliders-h"></i>
@@ -157,6 +123,261 @@ unset($_SESSION['login_error']);
         </div>
       </div>
     </section>
+
+    <!-- ================= FILTER POPUP (TAILWIND) ================= -->
+    <div
+      id="filterOverlay"
+      class="fixed inset-0 z-[55] hidden items-center justify-center"
+    >
+      <!-- overlay gelap -->
+      <div class="absolute inset-0 bg-black/50"></div>
+
+      <!-- card filter -->
+      <div
+        class="relative z-10 mx-4 w-full max-w-4xl max-h-[80vh] overflow-y-auto rounded-3xl bg-white p-6 md:p-8 shadow-xl"
+      >
+        <!-- tombol close -->
+        <button
+          type="button"
+          id="closeFilter"
+          class="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-indigo-500 text-white text-2xl leading-none shadow-md hover:bg-indigo-600"
+        >
+          &times;
+        </button>
+
+        <!-- FORM FILTER -->
+        <form action="search_kost.php" method="get" class="space-y-8 mt-6">
+          <!-- TYPE -->
+          <section>
+            <h3 class="text-lg font-semibold text-gray-800">Type</h3>
+            <div class="mt-2 h-px bg-gray-200"></div>
+
+            <div class="mt-4 flex flex-wrap gap-3">
+              <!-- bathroom type -->
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="bathroom_type"
+                  value="private"
+                  class="peer sr-only"
+                />
+                <span
+                  class="px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                         peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500"
+                >
+                  Private Bathroom
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="bathroom_type"
+                  value="shared"
+                  class="peer sr-only"
+                />
+                <span
+                  class="px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                         peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500"
+                >
+                  Shared Bathroom
+                </span>
+              </label>
+
+              <!-- fasilitas -->
+              <label class="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  name="parking"
+                  value="1"
+                  class="peer sr-only"
+                />
+                <span
+                  class="px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                         peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500"
+                >
+                  Parking Area
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  name="wifi"
+                  value="1"
+                  class="peer sr-only"
+                />
+                <span
+                  class="px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                         peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500"
+                >
+                  Wifi
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="gender_type"
+                  value="male"
+                  class="peer sr-only"
+                />
+                <span
+                  class="px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                         peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500"
+                >
+                  Male
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="gender_type"
+                  value="female"
+                  class="peer sr-only"
+                />
+                <span
+                  class="px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                         peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500"
+                >
+                  Female
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  name="ac"
+                  value="1"
+                  class="peer sr-only"
+                />
+                <span
+                  class="px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                         peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500"
+                >
+                  AC
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  name="kitchen"
+                  value="1"
+                  class="peer sr-only"
+                />
+                <span
+                  class="px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                         peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500"
+                >
+                  Kitchen
+                </span>
+              </label>
+            </div>
+          </section>
+
+          <!-- RANGE -->
+          <section>
+            <h3 class="text-lg font-semibold text-gray-800">Range</h3>
+            <div class="mt-2 h-px bg-gray-200"></div>
+
+            <div class="mt-4 grid gap-3 md:grid-cols-2">
+              <label class="inline-flex items-center">
+                <input type="radio" name="price_range" value="100-500" class="peer sr-only" />
+                <span class="w-full px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                             peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500">
+                  Rp. 100.000,00 - Rp. 500.000,00
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input type="radio" name="price_range" value="500-1000" class="peer sr-only" />
+                <span class="w-full px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                             peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500">
+                  Rp. 500.000,00 - Rp. 1.000.000,00
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input type="radio" name="price_range" value="1000-1500" class="peer sr-only" />
+                <span class="w-full px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                             peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500">
+                  Rp. 1.000.000,00 - Rp. 1.500.000,00
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input type="radio" name="price_range" value="1500-2000" class="peer sr-only" />
+                <span class="w-full px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                             peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500">
+                  Rp. 1.500.000,00 - Rp. 2.000.000,00
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input type="radio" name="price_range" value="2000-2500" class="peer sr-only" />
+                <span class="w-full px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                             peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500">
+                  Rp. 2.000.000,00 - Rp. 2.500.000,00
+                </span>
+              </label>
+
+              <label class="inline-flex items-center">
+                <input type="radio" name="price_range" value="2500-3000" class="peer sr-only" />
+                <span class="w-full px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                             peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500">
+                  Rp. 2.500.000,00 - Rp. 3.000.000,00
+                </span>
+              </label>
+            </div>
+          </section>
+
+          <!-- CITY -->
+          <section>
+            <h3 class="text-lg font-semibold text-gray-800">City</h3>
+            <div class="mt-2 h-px bg-gray-200"></div>
+
+            <div class="mt-4 flex flex-wrap gap-3">
+              <?php
+              $cities = [
+                  'Salatiga', 'Semarang', 'Boyolali', 'Banyumanik',
+                  'Pekalongan', 'Banyumas', 'Surakarta', 'Yogyakarta',
+                  'Solo', 'Purwakarta', 'Klaten', 'Ungaran', 'Tegal'
+              ];
+              foreach ($cities as $c):
+              ?>
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="city"
+                  value="<?php echo $c; ?>"
+                  class="peer sr-only"
+                />
+                <span
+                  class="px-4 py-2 rounded-full border border-gray-300 text-sm text-gray-700 cursor-pointer
+                         peer-checked:bg-indigo-500 peer-checked:text-white peer-checked:border-indigo-500"
+                >
+                  <?php echo $c; ?>
+                </span>
+              </label>
+              <?php endforeach; ?>
+            </div>
+          </section>
+
+          <!-- BUTTON OK -->
+          <div class="flex justify-center pt-2 pb-1">
+            <button
+              type="submit"
+              class="px-10 py-2.5 rounded-full bg-indigo-500 text-white text-sm font-semibold shadow hover:bg-indigo-600"
+            >
+              OK
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- ================= END FILTER POPUP ================= -->
 
     <!-- About Section -->
     <section
@@ -304,7 +525,7 @@ unset($_SESSION['login_error']);
           </div>
         </div>
       </div>
-
+            
       <!-- KANAN -->
       <div
         class="relative flex-1 flex items-center justify-center min-h-[360px] md:min-h-[520px]"
@@ -373,11 +594,12 @@ unset($_SESSION['login_error']);
               Discover your ideal room on Threekost now!
             </p>
 
-            <button
-              class="w-full py-5 px-6 rounded-full border-0 bg-[#e6e6e6] text-[#111] font-bold text-[18px] hover:bg-[#d8d8d8] hover:-translate-y-[1px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition"
+            <a
+              href="kost_list.php"
+              class="w-full py-5 px-6 rounded-full border-0 bg-[#e6e6e6] text-[#111] font-bold text-[18px] hover:bg-[#d8d8d8] hover:-translate-y-[1px] hover:shadow-[0_8px_20px_rgba(0,0,0,0.15)] transition text-center block"
             >
               Find a kost now
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -403,11 +625,7 @@ unset($_SESSION['login_error']);
           <p class="text-base md:text-lg text-gray-700 mb-6">
             Earn extra just by renting your property...
           </p>
-          <button
-            class="inline-block rounded-full bg-[#4f6bff] px-8 py-3 text-white font-semibold text-base md:text-lg shadow-lg hover:bg-[#3b57e5] transition"
-          >
-            Become A Host
-          </button>
+
         </div>
       </div>
     </section>
@@ -470,11 +688,12 @@ unset($_SESSION['login_error']);
       </div>
 
       <div class="flex justify-center mt-10">
-        <button
-          class="rounded-full bg-[#4f6bff] px-9 py-3 text-sm md:text-base font-semibold text-white shadow-lg hover:bg-[#3c57e3] transition"
-        >
-          View All Blogs
-        </button>
+        <a
+        href="kost_list.php"
+        class="rounded-full bg-[#4f6bff] px-9 py-3 text-sm md:text-base font-semibold text-white shadow-lg hover:bg-[#3c57e3] transition text-center inline-block"
+      >
+        View All Blogs
+      </a>
       </div>
     </section>
 
@@ -508,11 +727,12 @@ unset($_SESSION['login_error']);
               Discover different types of kosts that suit your needs...
             </p>
 
-            <button
+            <a
+            href="kost_list.php"
               class="inline-flex items-center justify-center rounded-full bg-[#1d4fff] px-8 sm:px-10 py-3 sm:py-3.5 text-sm sm:text-base font-semibold shadow-lg hover:bg-[#1438d9] transition"
             >
-              Find A Property
-            </button>
+                Find A Property
+            </a>
           </div>
         </div>
       </div>
@@ -848,7 +1068,7 @@ unset($_SESSION['login_error']);
             </div>
 
             <button
-              class="inline-flex items-center justify-center px-10 md:px-14 py-4 rounded-full bg-[#2F80FF] text-white font-semibold text-sm md:text-base shadow-md hover:bg-[#2163d6] transition"
+              class="inline-flex items-center justify-center px-10 md:px-14 py-4 rounded-full bg[#2F80FF] bg-[#2F80FF] text-white font-semibold text-sm md:text-base shadow-md hover:bg-[#2163d6] transition"
             >
               Discover More
             </button>
@@ -866,158 +1086,9 @@ unset($_SESSION['login_error']);
     </section>
 
      <!-- Footer -->
-    <footer class="bg-white mt-16">
-      <!-- NEWSLETTER BAR -->
-      <div class="bg-[#A9D4FF]">
-        <div
-          class="max-w-6xl mx-auto px-6 md:px-10 lg:px-16 py-5 md:py-6 flex flex-col md:flex-row items-center gap-4 md:gap-8 justify-between"
-        >
-          <div>
-            <h3 class="text-sm md:text-base font-bold tracking-wide text-gray-800">
-              NEWSLETTER
-            </h3>
-            <p class="text-xs md:text-sm text-gray-700">Stay Upto Date</p>
-          </div>
-
-          <form class="w-full md:flex-1">
-            <div
-              class="flex items-center bg-white rounded-full pl-6 pr-2 py-2 md:py-3 shadow-sm"
-            >
-              <input
-                type="email"
-                placeholder="Your Email..."
-                class="flex-1 bg-transparent outline-none text-sm md:text-base text-gray-700 placeholder:text-gray-400"
-              />
-              <button
-                type="submit"
-                class="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full bg-[#0065FF] text-white"
-              >
-                <i class="fas fa-paper-plane text-sm"></i>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <!-- MAIN FOOTER CONTENT -->
-      <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 py-14 md:py-20">
-        <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
-          <div class="lg:w-[40%] xl:w-[38%]">
-            <img
-              src="img/logo1.jpg"
-              alt="ThreeKost Logo"
-              class="h-20 md:h-24 w-auto mb-4"
-            />
-
-            <p
-              class="text-base md:text-lg text-gray-500 leading-relaxed mb-8 max-w-md"
-            >
-              Three Kost is a modern room-rental web app that makes it easy
-              to find comfortable, affordable housing that fits your
-              needs—no in-person visits required.
-            </p>
-
-            <div class="flex flex-wrap items-center gap-4">
-              <button
-                class="flex items-center gap-3 bg-[#ECECEC] px-7 py-3 rounded-xl text-base md:text-lg text-gray-800"
-              >
-                <img
-                  src="img/playstore.png"
-                  alt="PlayStore"
-                  class="w-5 md:w-6"
-                />
-                <span>PlayStore</span>
-              </button>
-
-              <button
-                class="flex items-center gap-3 bg-[#ECECEC] px-7 py-3 rounded-xl text-base md:text-lg text-gray-800"
-              >
-                <img
-                  src="img/apple.png"
-                  alt="AppleStore"
-                  class="w-5 md:w-6"
-                />
-                <span>AppleStore</span>
-              </button>
-            </div>
-          </div>
-
-          <div class="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-6 xl:gap-8">
-            <div>
-              <h4
-                class="text-base md:text-lg font-bold tracking-wide text-gray-800 mb-3"
-              >
-                COMPANY
-              </h4>
-              <ul class="space-y-1.5 text-sm md:text-base text-gray-700">
-                <li><a href="#" class="hover:text-blue-500">About Us</a></li>
-                <li>
-                  <a href="#" class="hover:text-blue-500">Legal Information</a>
-                </li>
-                <li><a href="#" class="hover:text-blue-500">Contact Us</a></li>
-                <li><a href="#" class="hover:text-blue-500">Blogs</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4
-                class="text-base md:text-lg font-bold tracking-wide text-gray-800 mb-3"
-              >
-                HELP CENTER
-              </h4>
-              <ul class="space-y-1.5 text-sm md:text-base text-gray-700">
-                <li>
-                  <a href="#" class="hover:text-blue-500">Find a Property</a>
-                </li>
-                <li><a href="#" class="hover:text-blue-500">How To Host?</a></li>
-                <li><a href="#" class="hover:text-blue-500">Why Us?</a></li>
-                <li><a href="#" class="hover:text-blue-500">FAQs</a></li>
-                <li>
-                  <a href="#" class="hover:text-blue-500">Rental Guides</a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4
-                class="text-base md:text-lg font-bold tracking-wide text-gray-800 mb-3"
-              >
-                CONTACT INFO
-              </h4>
-              <ul class="space-y-1.5 text-sm md:text-base text-gray-700 mb-5">
-                <li>Phone: 892364729</li>
-                <li>Email: threekost@gmail.com</li>
-                <li>Location: Salatiga, Central Java</li>
-              </ul>
-
-              <div class="flex items-center gap-4 text-gray-700 text-2xl">
-                <a href="#" class="hover:text-blue-600">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" class="hover:text-blue-600">
-                  <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="hover:text-blue-600">
-                  <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="hover:text-blue-600">
-                  <i class="fab fa-linkedin-in"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- BOTTOM BAR -->
-      <div class="border-t">
-        <div
-          class="max-w-6xl mx-auto px-6 md:px-10 lg:px-16 py-4 text-xs md:text-sm text-gray-500"
-        >
-          © 2022 thecreation.design | All rights reserved
-        </div>
-      </div>
-    </footer>
+      <?php 
+        @include('footer.php')
+      ?>
 
         <!-- SIGN UP MODAL -->
     <div
@@ -1050,7 +1121,7 @@ unset($_SESSION['login_error']);
             </span>
           </div>
 
-          <!-- judul (akan berubah antara step 1 & 2) -->
+          <!-- judul (berubah antara step 1 & 2) -->
           <h2
             id="signupTitle"
             class="text-2xl md:text-4xl font-bold text-gray-900 text-left w-full mb-8"
@@ -1439,6 +1510,38 @@ unset($_SESSION['login_error']);
       </div>
     </div>
     <!-- END LOGIN MODAL -->
+
+    <!-- JS kecil untuk filter popup  -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const filterOverlay = document.getElementById('filterOverlay');
+        const openFilterBtn = document.getElementById('openFilter');
+        const closeFilterBtn = document.getElementById('closeFilter');
+
+        function openFilter() {
+          if (!filterOverlay) return;
+          filterOverlay.classList.remove('hidden');
+          filterOverlay.classList.add('flex');
+          document.body.classList.add('overflow-hidden');
+        }
+
+        function closeFilter() {
+          if (!filterOverlay) return;
+          filterOverlay.classList.add('hidden');
+          filterOverlay.classList.remove('flex');
+          document.body.classList.remove('overflow-hidden');
+        }
+
+        openFilterBtn && openFilterBtn.addEventListener('click', openFilter);
+        closeFilterBtn && closeFilterBtn.addEventListener('click', closeFilter);
+
+        filterOverlay && filterOverlay.addEventListener('click', function (e) {
+          if (e.target === filterOverlay) {
+            closeFilter();
+          }
+        });
+      });
+    </script>
 
   </body>
 </html>

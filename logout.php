@@ -2,7 +2,7 @@
 // logout.php
 session_start();
 
-// Hanya izinkan via POST (optional keamanan)
+// Hanya bolehin via POST (optional keamanan)
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: index.php");
     exit;

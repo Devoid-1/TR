@@ -1,5 +1,5 @@
 <?php
-// config.php
+
 
 // Mulai session sekali saja
 if (session_status() === PHP_SESSION_NONE) {
@@ -8,9 +8,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Konfigurasi database
 $host = "localhost";
-$user = "root";          // default XAMPP/WAMP
-$pass = "";              // kosong kalau belum di-set
-$db   = "threekost_db";  // sesuaikan dengan nama DB kamu
+$user = "root";          
+$pass = "";              
+$db   = "threekost_db";  
 
 // Konek ke MySQL
 $conn = new mysqli($host, $user, $pass, $db);

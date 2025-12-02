@@ -1,27 +1,12 @@
 <?php
-// signup_process.php
-
-session_start(); // penting: supaya bisa set $_SESSION
-
-// 1. Konfigurasi koneksi
-$host = "localhost";
-$user = "root";          // default XAMPP/WAMP
-$pass = "";              // kosong kalau belum di-set
-$db   = "threekost_db";  // sesuaikan dengan nama DB kamu
-
-// 2. Konek ke MySQL
-$conn = new mysqli($host, $user, $pass, $db);
-
-// Cek error koneksi
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'config.php';
 
 // 3. Ambil data dari form
 $full_name         = trim($_POST['full_name'] ?? '');
 $email             = trim($_POST['email'] ?? '');
 $password          = $_POST['password'] ?? '';
 $confirm_password  = $_POST['confirm_password'] ?? '';
+$role              = 'tenant';
 
 // 4. Validasi sederhana
 if (empty($full_name) || empty($email) || empty($password) || empty($confirm_password)) {
@@ -67,8 +52,8 @@ $check->close();
 $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
 // 7. Simpan ke database
-$stmt = $conn->prepare("INSERT INTO users (full_name, email, password) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $full_name, $email, $password_hash);
+$stmt = $conn->prepare("INSERT INTO users (full_name, email, password,role) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("ssss", $full_name, $email, $password_hash, $role);
 
 if ($stmt->execute()) {
     // === SET SESSION UNTUK USER YANG BARU SIGN UP ===
